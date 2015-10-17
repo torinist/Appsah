@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+  <h:head>
+  	<title>contactEdit</title>
+  	<h:outputStylesheet library="css" name="default.css" />
+  </h:head>
+  <h:body>
+  	<h:form>
+  		<p:messages id="messages" severity="info" showDetail="true" autoUpdate="true" closable="true" />
+  		<p:panelGrid columns="3" id="grid" styleClass="contactEditDialogGrid">
+  			<h:outputText value="content"  for="default"/>
+  			<p:inputTextarea required="true" value="#{contactEditBean.content}" id="default"/>
+  			<p:message for="default"/>
+  			<h:outputText value="writer"/>
+  			<p:selectOneMenu id="writerId" value="#{contactEditBean.writerId}">
+  				<f:selectItems value="#{contactEditBean.writerIds}" var="writers" itemValue="#{writers.id}" itemLabel="#{writers.name}"/>
+  			</p:selectOneMenu>
+  		</p:panelGrid>
+  		<p:commandButton value="submit" update="grid" actionListener="#{contactEditBean.edit()}"/>
+  	</h:form>
+  </h:body>
+</html>

@@ -3,3 +3,12 @@
 div.header {
 	height: 30px;
 }
+
+.contactEditDialogGrid {
+	cellpadding: 5px;
+}
+
+.contactEditDialogGrid.ui-panelgrid>*>tr,
+.contactEditDialogGrid.ui-panelgrid .ui-panelgrid-cell {
+    border: none;
+}
