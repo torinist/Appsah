@@ -3,8 +3,13 @@ package logic;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
+
 import bean.TopMenuBean;
 
+@Named
+@ApplicationScoped
 public class TopMenuService {
 
 	public List<TopMenuBean> topMenuCreate() {
@@ -19,7 +24,7 @@ public class TopMenuService {
 		children1.add("ダンジョンに出会いを求めるのは間違っているだろうか");
 		tm1.setChildren(children1);
 		tmList.add(tm1);
-		
+
 		TopMenuBean tm2 = new TopMenuBean();
 		tm2.setParent("14年冬アニメランキング");
 		List<String> children2 = new ArrayList<String>();
@@ -31,7 +36,7 @@ public class TopMenuService {
 		children2.add("デュラララ！！×2　承");
 		tm2.setChildren(children2);
 		tmList.add(tm2);
-		
+
 		return tmList;
 	}
 }

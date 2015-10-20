@@ -16,7 +16,7 @@ public class ContactBean {
 		Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Tokyo"), new Locale("jp", "JP", "JP"));
 		datetime = calendar.getTime().toString();
 	}
-	
+
 	public String getContent() {
 		return content;
 	}
