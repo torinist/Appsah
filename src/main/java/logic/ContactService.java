@@ -5,11 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.Dependent;
-import javax.inject.Named;
+import javax.interceptor.Interceptors;
 
+import util.Tracer;
 import bean.ContactBean;
 
-@Named
+@Interceptors(Tracer.class)
 @Dependent
 public class ContactService implements Serializable{
 

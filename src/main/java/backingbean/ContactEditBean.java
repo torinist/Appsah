@@ -1,27 +1,25 @@
 package backingbean;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 
-import bean.WriterBean;
 import logic.WriterService;
+import bean.WriterBean;
 
 @Named
-@ViewScoped
-public class ContactEditBean implements Serializable {
+@RequestScoped
+public class ContactEditBean {
 
 	/**
-	 * 
+	 *
 	 */
-	private static final long serialVersionUID = 1L;
 
 	@NotNull
 	private String content;
@@ -38,16 +36,25 @@ public class ContactEditBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		System.out.println("!!!! init開始");
-		content = null;
-		writerId = null;
-		writerIds = writerService.writerCreate();
+		displayInit();
 	}
 
-	// submitボタン押下時のメソッド
+	/*
+	 *  submitボタン押下時のメソッド
+	 */
 	public void edit() {
 		System.out.println("writerId: " + writerId + ", content: " + content);
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Complete."));
-		init();
+		displayInit();
+	}
+
+	/*
+	 * 画面部品を初期化するメソッド
+	 */
+	private void displayInit() {
+		content = null;
+		writerId = null;
+		writerIds = writerService.writerCreate();
 	}
 
 	public String getContent() {
