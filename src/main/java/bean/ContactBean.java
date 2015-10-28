@@ -16,10 +16,6 @@ public class ContactBean {
 		this.content = content;
 		this.writerId = writerId;
 		this.writer = writer;
-		// Calendar calendar = Calendar.getInstance(
-		// TimeZone.getTimeZone("Asia/Tokyo"),
-		// new Locale("jp", "JP", "JP"));
-		// this.datetime = calendar.getTime().toString();
 		this.categoryId = categoryId;
 		this.categoryName = categoryName;
 		this.datetime = datetime;
