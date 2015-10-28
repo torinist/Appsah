@@ -3,13 +3,13 @@ package logic;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 import javax.inject.Named;
 
 import bean.TopMenuBean;
 
 @Named
-@ApplicationScoped
+@Dependent
 public class TopMenuService {
 
 	public List<TopMenuBean> topMenuCreate() {
