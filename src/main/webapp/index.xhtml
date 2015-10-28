@@ -50,13 +50,21 @@
         		  
         		</f:facet>
         		
-        		<h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+        		<h:panelGrid columns="2" columnClasses="logo,detail" styleClass="twiGrid1">
         		  <h:graphicImage library="images" name="icon.jpg" />
 	        	  <p:outputPanel>
-	        	    <h:outputText value="#{conb.content}" />
-	        		<h:outputText value="#{conb.writer}" style="color: #ff0000;"/>
+	        	  	<h:panelGrid columns="3" cellpadding="5" columnClasses="pgLeft,pgCenter,pgRight" styleClass="twiGrid2">
+	        	  		<h:outputText value="#{conb.categoryName}"/>
+		        	  	<h:outputText value="#{conb.content}"/>
+		        	  	<h:outputText/>
+		        	  	<h:outputText/>
+	        	  		<h:outputText value="#{conb.writer}" style="color: #ff0000; font-size: 80%;"/>
+	        	  		<h:outputText value="#{conb.datetime}" style="font-size: 80%;"/>
+	        	  	</h:panelGrid>
+        	  		
 	        	  </p:outputPanel>
 	        	</h:panelGrid>
+	        	<p:separator />
         	  </p:dataScroller>
             </h:form>
 	      </div>

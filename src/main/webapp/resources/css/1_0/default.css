@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+body {
+	font-size: 90%;
+}
+
 div.header {
 	height: 30px;
 }
@@ -11,4 +15,24 @@ div.header {
 .contactEditDialogGrid.ui-panelgrid>*>tr,
 .contactEditDialogGrid.ui-panelgrid .ui-panelgrid-cell {
     border: none;
+}
+
+table.twiGrid1 {
+	width: 100%;
+}
+
+.logo {
+	width: 10%;
+}
+
+.pgLeft {
+	width: 20%;
+}
+
+.pgCenter {
+	width: 50%;
+}
+
+.pgRight {
+	width: 25%;
 }

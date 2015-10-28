@@ -15,7 +15,7 @@ import dao.ContactDao;
 
 @Interceptors(Tracer.class)
 @Dependent
-public class ContactService implements Serializable{
+public class ContactService implements Serializable {
 
 	@Inject
 	ContactDao conDao;
@@ -24,8 +24,12 @@ public class ContactService implements Serializable{
 		List<Contact> list = conDao.findAllByDelflag();
 		List<ContactBean> conb = new ArrayList<ContactBean>();
 
-		for(Contact c : list) {
-			ContactBean cb = new ContactBean(c.getId(), c.getContents(), c.getMember().getId(), c.getMember().getName(), c.getMasterContactCategory().getId(), c.getMasterContactCategory().getName(), c.getDate().toString());
+		for (Contact c : list) {
+			ContactBean cb = new ContactBean(c.getId(), c.getContents(),
+					c.getMember().getId(), c.getMember().getName(),
+					c.getMasterContactCategory().getId(),
+					c.getMasterContactCategory().getName(),
+					c.getDate().toString());
 			conb.add(cb);
 		}
 
