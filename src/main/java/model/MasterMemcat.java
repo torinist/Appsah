@@ -1,13 +1,16 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 
 /**
  * The persistent class for the master_memcat database table.
- * 
+ *
  */
 @Entity
 @Table(name="master_memcat")
@@ -22,9 +25,9 @@ public class MasterMemcat implements Serializable {
 
 	private String name;
 
-	//bi-directional many-to-one association to Member
-	@OneToMany(mappedBy="masterMemcat")
-	private List<Member> members;
+//	//bi-directional many-to-one association to Member
+//	@OneToMany(mappedBy="masterMemcat")
+//	private List<Member> members;
 
 	public MasterMemcat() {
 	}
@@ -53,26 +56,26 @@ public class MasterMemcat implements Serializable {
 		this.name = name;
 	}
 
-	public List<Member> getMembers() {
-		return this.members;
-	}
+//	public List<Member> getMembers() {
+//		return this.members;
+//	}
+//
+//	public void setMembers(List<Member> members) {
+//		this.members = members;
+//	}
 
-	public void setMembers(List<Member> members) {
-		this.members = members;
-	}
-
-	public Member addMember(Member member) {
-		getMembers().add(member);
-		member.setMasterMemcat(this);
-
-		return member;
-	}
-
-	public Member removeMember(Member member) {
-		getMembers().remove(member);
-		member.setMasterMemcat(null);
-
-		return member;
-	}
+//	public Member addMember(Member member) {
+//		getMembers().add(member);
+//		member.setMasterMemcat(this);
+//
+//		return member;
+//	}
+//
+//	public Member removeMember(Member member) {
+//		getMembers().remove(member);
+//		member.setMasterMemcat(null);
+//
+//		return member;
+//	}
 
 }
