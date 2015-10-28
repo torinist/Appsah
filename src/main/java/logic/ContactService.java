@@ -9,6 +9,8 @@ import javax.inject.Inject;
 import javax.interceptor.Interceptors;
 
 import model.Contact;
+import model.MasterContactCategory;
+import model.Member;
 import util.Dateutil;
 import util.Tracer;
 import bean.ContactBean;
@@ -20,9 +22,6 @@ public class ContactService implements Serializable {
 
 	@Inject
 	ContactDao conDao;
-
-	@Inject
-	Contact contact;
 
 	public List<ContactBean> contactListCreate() {
 		List<Contact> list = conDao.findAllByDelflag();
@@ -44,9 +43,19 @@ public class ContactService implements Serializable {
 	 * 例外が返ってこない場合は0を返す
 	 */
 	public int contactAdd(ContactBean contactBean) {
+		contactBean.setCategoryId("00001");
+
+		Contact contact = new Contact();
+		MasterContactCategory mcc = new MasterContactCategory();
+		Member member = new Member();
+
 		contact.setContents(contactBean.getContent());
-		contact.setDate(Dateutil.getNowDate());
-		contact.
+		contact.setDate(Dateutil.dateToString(Dateutil.getNowDate()));
+		mcc.setId(contactBean.getCategoryId());
+		contact.setMasterContactCategory(mcc);
+		member.setId(contactBean.getWriterId());
+		contact.setMember(member);
+		conDao.create(contact);
 		return 0;
 	}
 }
