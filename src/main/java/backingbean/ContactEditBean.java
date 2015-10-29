@@ -10,7 +10,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 
+import logic.ContactService;
 import logic.WriterService;
+import bean.ContactBean;
 import bean.WriterBean;
 
 @Named
@@ -31,7 +33,10 @@ public class ContactEditBean {
 	private List<WriterBean> writerIds;
 
 	@Inject
-	private WriterService writerService = new WriterService();
+	private WriterService writerService;
+
+	@Inject
+	ContactService contactService;
 
 	@PostConstruct
 	public void init() {
@@ -44,6 +49,7 @@ public class ContactEditBean {
 	 */
 	public void edit() {
 		System.out.println("writerId: " + writerId + ", content: " + content);
+		contactService.contactAdd(new ContactBean(0, content, writerId, null, null, null, null));
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Complete."));
 		displayInit();
 	}

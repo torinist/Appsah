@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,8 +8,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the contact database table.
@@ -39,8 +36,7 @@ public class Contact implements Serializable {
 
 	private String contents;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date date;
+	private String date;
 
 	private byte delflag;
 
@@ -80,11 +76,11 @@ public class Contact implements Serializable {
 		this.contents = contents;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return this.date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
