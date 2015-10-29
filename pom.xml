@@ -49,5 +49,11 @@
 		<artifactId>slf4j-api</artifactId>
 		<version>1.7.12</version>
 	</dependency>
+  	<dependency>
+  		<groupId>com.sun.faces</groupId>
+  		<artifactId>jsf-impl</artifactId>
+  		<version>2.2.12</version>
+  		<scope>provided</scope>
+  	</dependency>
   </dependencies>
 </project>
