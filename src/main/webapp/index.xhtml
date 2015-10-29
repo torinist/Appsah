@@ -3,7 +3,8 @@
 <html lang="ja" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 	<h:head>
 		<title>index</title>
@@ -15,7 +16,15 @@
 	  	<h:panelGrid columns="3" columnClasses="headerColumnLeft,headerColumn,headerColumnRight" styleClass="headerGrid">
 	  		<h:outputText value="グループ内ポータル"/>
 	  		<p:commandButton value="情報共有版" icon="fa fa-bookmark"/>
-	  		<p:commandButton value="ログイン" icon="fa fa-male"/>
+	  		<ui:fragment rendered="#{indexBackingBean.loginVerify}">
+	  			<p:button value="ログイン" icon="fa fa-male" outcome="login"/>
+	  		</ui:fragment>
+	  		<h:form>
+	  		  <ui:fragment rendered="#{!indexBackingBean.loginVerify}">
+	  			<h:outputText value="#{indexBackingBean.loginUser.userName}さんがログイン中"/>
+	  			<p:commandButton value="ログアウト" action="#{indexBackingBean.logout}"/>
+	  		  </ui:fragment>
+	  		</h:form>
 	  	</h:panelGrid>
 	  </div>
 	  <div class="main ui-grid ui-grid-responsive">
