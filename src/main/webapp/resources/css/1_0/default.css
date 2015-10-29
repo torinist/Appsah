@@ -5,7 +5,33 @@ body {
 }
 
 div.header {
-	height: 30px;
+	background-color: #35414f;
+	margin: -8px -8px 0 -8px;
+	height: 40px;
+	font-weight:bold;
+	color:#e1e463;
+}
+
+table.headerGrid {
+	width: 100%;
+}
+
+.headerColumnLeft {
+	font-size: 120%;
+	width: 30%;
+}
+
+.headerColumn {
+	width: 40%;
+}
+
+.headerColumnRight {
+	width: 30%;
+	text-align: right;
+}
+
+div.main {
+	padding-top: 5px;
 }
 
 .contactEditDialogGrid {
@@ -21,18 +47,35 @@ table.twiGrid1 {
 	width: 100%;
 }
 
-.logo {
+table.twiGrid1 .logo {
 	width: 10%;
 }
 
-.pgLeft {
+table.twiGrid1 .pgLeft {
 	width: 20%;
 }
 
-.pgCenter {
+table.twiGrid1 .pgCenter {
 	width: 50%;
 }
 
-.pgRight {
+table.twiGrid1 .pgRight {
 	width: 25%;
+}
+
+/* ラベルとコンテンツが一緒になっているテーブル。線あり */
+table.tableGrid {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+table.tableGrid .tableLabel {
+	width: 30%;
+	background-color: #35414f;
+	font-weight:bold;
+	color:#e1e463;
+}
+
+div.loginForm {
+	text-align: center;
 }
