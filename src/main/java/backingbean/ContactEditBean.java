@@ -8,12 +8,16 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.validation.constraints.NotNull;
 
 import logic.ContactService;
-import logic.WriterService;
+import logic.MasterContactCategoryService;
+import model.MasterContactCategory;
+
+import org.slf4j.Logger;
+
+import util.LoginVerifier;
 import bean.ContactBean;
-import bean.WriterBean;
+import bean.LoginUserBean;
 
 @Named
 @RequestScoped
@@ -23,35 +27,62 @@ public class ContactEditBean {
 	 *
 	 */
 
-	@NotNull
-	private String content;
+	String content;
 
-	// contentを登録した人のID
-	private String writerId;
+	// // contentを登録した人のID
+	// private String writerId;
 
-	// TODO: Mapにしたらどうだろうか。そうするとIDとnameが紐づいて楽なんだけどなあ
-	private List<WriterBean> writerIds;
+	String categoryId;
+
+	List<MasterContactCategory> categorys;
 
 	@Inject
-	private WriterService writerService;
+	private MasterContactCategoryService categoryService;
+	// // TODO: Mapにしたらどうだろうか。そうするとIDとnameが紐づいて楽なんだけどなあ
+	// private List<WriterBean> writerIds;
+	//
+	// @Inject
+	// private WriterService writerService;
 
 	@Inject
 	ContactService contactService;
 
+	@Inject
+	LoginVerifier loginVerifier;
+
+	@Inject
+	LoginUserBean loginUser;
+
+	// ログインした人の名前を表示するための変数
+	String loginUserName;
+
+	@Inject
+	Logger logger;
+
 	@PostConstruct
 	public void init() {
-		System.out.println("!!!! init開始");
 		displayInit();
 	}
 
 	/*
-	 *  submitボタン押下時のメソッド
+	 * submitボタン押下時のメソッド
 	 */
 	public void edit() {
-		System.out.println("writerId: " + writerId + ", content: " + content);
-		contactService.contactAdd(new ContactBean(0, content, writerId, null, null, null, null));
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Complete."));
-		displayInit();
+		if (loginVerifier.loginVerify()) {
+			logger.info("loginしていないみたいだね");
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_WARN, "WARN",
+							"ログインしないと登録できないよ！"));
+		} else {
+			contactService.contactAdd(new ContactBean(0, content, loginUser
+					.getUserId(), null, categoryId, null, null));
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "INFO",
+							"Complete."));
+			displayInit();
+		}
 	}
 
 	/*
@@ -59,8 +90,14 @@ public class ContactEditBean {
 	 */
 	private void displayInit() {
 		content = null;
-		writerId = null;
-		writerIds = writerService.writerCreate();
+		if (loginVerifier.loginVerify()) {
+			loginUserName = "ログインしていません";
+		} else {
+			loginUserName = loginUser.getUserName();
+		}
+
+		categorys = categoryService.categoryCreate();
+		// writerIds = writerService.writerCreate();
 	}
 
 	public String getContent() {
@@ -71,20 +108,44 @@ public class ContactEditBean {
 		this.content = content;
 	}
 
-	public String getWriterId() {
-		return writerId;
+	// public String getWriterId() {
+	// return writerId;
+	// }
+	//
+	// public void setWriterId(String writerId) {
+	// this.writerId = writerId;
+	// }
+
+	public String getLoginUserName() {
+		return loginUserName;
 	}
 
-	public void setWriterId(String writerId) {
-		this.writerId = writerId;
+	public void setLoginUserName(String loginUserName) {
+		this.loginUserName = loginUserName;
 	}
 
-	public List<WriterBean> getWriterIds() {
-		return writerIds;
+	public String getCategoryId() {
+		return categoryId;
 	}
 
-	public void setWriterIds(List<WriterBean> writerIds) {
-		this.writerIds = writerIds;
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
 	}
+
+	public List<MasterContactCategory> getCategorys() {
+		return categorys;
+	}
+
+	public void setCategorys(List<MasterContactCategory> categorys) {
+		this.categorys = categorys;
+	}
+
+	// public List<WriterBean> getWriterIds() {
+	// return writerIds;
+	// }
+	//
+	// public void setWriterIds(List<WriterBean> writerIds) {
+	// this.writerIds = writerIds;
+	// }
 
 }

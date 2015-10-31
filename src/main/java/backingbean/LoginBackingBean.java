@@ -40,10 +40,9 @@ public class LoginBackingBean {
 	public String loginCheck() {
 		if (loginVerifier.loginVerify()) {
 			return null;
-
 		} else {
 			logger.info("ログイン済みのためindex.xhtmlに遷移します。");
-			return "index.xhtml";
+			return "index?faces-redirect=true";
 		}
 	}
 

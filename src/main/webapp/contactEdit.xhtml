@@ -10,14 +10,17 @@
   </h:head>
   <h:body>
   	<h:form>
-  		<p:messages id="messages" severity="info" showDetail="true" autoUpdate="true" closable="true" />
+  		<p:messages id="messages" severity="info,warn" showDetail="true" autoUpdate="true" closable="true" />
   		<p:panelGrid columns="3" id="grid" styleClass="contactEditDialogGrid">
   			<h:outputText value="content"  for="default"/>
   			<p:inputTextarea required="true" value="#{contactEditBean.content}" id="default"/>
   			<p:message for="default"/>
-  			<h:outputText value="writer"/>
-  			<p:selectOneMenu id="writerId" value="#{contactEditBean.writerId}">
-  				<f:selectItems value="#{contactEditBean.writerIds}" var="writers" itemValue="#{writers.id}" itemLabel="#{writers.name}"/>
+  			<h:outputText value="投稿者："/>
+  			<p:outputLabel value="#{contactEditBean.loginUserName}"/>
+  			<h:outputLabel/>
+  			<h:outputText value="カテゴリ："/>
+  			<p:selectOneMenu id="categoryId" value="#{contactEditBean.categoryId}">
+  			  <f:selectItems value="#{contactEditBean.categorys}" var="category" itemValue="#{category.id}" itemLabel="#{category.name}"/>
   			</p:selectOneMenu>
   		</p:panelGrid>
   		<p:commandButton value="submit" update="grid" actionListener="#{contactEditBean.edit()}"/>

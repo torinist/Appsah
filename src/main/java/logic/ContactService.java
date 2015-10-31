@@ -6,17 +6,15 @@ import java.util.List;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
-import javax.interceptor.Interceptors;
 
 import model.Contact;
 import model.MasterContactCategory;
 import model.Member;
 import util.Dateutil;
-import util.Tracer;
 import bean.ContactBean;
 import dao.ContactDao;
 
-@Interceptors(Tracer.class)
+//@Interceptors(Tracer.class)
 @Dependent
 public class ContactService implements Serializable {
 
@@ -42,9 +40,7 @@ public class ContactService implements Serializable {
 	/*
 	 * 例外が返ってこない場合は0を返す
 	 */
-	public int contactAdd(ContactBean contactBean) {
-		contactBean.setCategoryId("00001");
-
+	public void contactAdd(ContactBean contactBean) {
 		Contact contact = new Contact();
 		MasterContactCategory mcc = new MasterContactCategory();
 		Member member = new Member();
@@ -56,6 +52,5 @@ public class ContactService implements Serializable {
 		member.setId(contactBean.getWriterId());
 		contact.setMember(member);
 		conDao.create(contact);
-		return 0;
 	}
 }

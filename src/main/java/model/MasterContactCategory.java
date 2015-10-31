@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -14,8 +15,14 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="master_contact_category")
-@NamedQuery(name="MasterContactCategory.findAll", query="SELECT m FROM MasterContactCategory m")
+@NamedQueries({
+	@NamedQuery(name=MasterContactCategory.FIND_ALL, query="SELECT m FROM MasterContactCategory m"),
+	@NamedQuery(name=MasterContactCategory.FIND_ALL_BY_DELFLAG, query="SELECT m FROM MasterContactCategory m WHERE m.delflag='false'")
+})
 public class MasterContactCategory implements Serializable {
+
+	public static final String FIND_ALL = "MasterContactCategory.findAll";
+	public static final String FIND_ALL_BY_DELFLAG = "MasterContactCategory.findAllByDelflag";
 	private static final long serialVersionUID = 1L;
 
 	@Id

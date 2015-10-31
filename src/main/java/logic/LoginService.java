@@ -10,6 +10,7 @@ import model.Member;
 import org.slf4j.Logger;
 
 import util.Constant;
+import util.LoginVerifier;
 import bean.LoginUserBean;
 import dao.MemberDao;
 
@@ -24,6 +25,9 @@ public class LoginService implements Serializable {
 
 	@Inject
 	Logger logger;
+
+	@Inject
+	LoginVerifier loginVerifier;
 
 	/**
 	 *
