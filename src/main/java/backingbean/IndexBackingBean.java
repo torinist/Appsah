@@ -1,10 +1,11 @@
 package backingbean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -25,8 +26,8 @@ import bean.LoginUserBean;
 import bean.TopMenuBean;
 
 @Named
-@RequestScoped
-public class IndexBackingBean {
+@ViewScoped
+public class IndexBackingBean implements Serializable {
 
 	private List<ContactBean> conb;
 
@@ -83,6 +84,10 @@ public class IndexBackingBean {
 		logger.info("ログアウトします。");
 		loginUser.logout();
 		return "index?faces-redirect=true";
+	}
+
+	public void updateTwitter() {
+		conb = contactService.contactListCreate();
 	}
 
 	public List<ContactBean> getConb() {

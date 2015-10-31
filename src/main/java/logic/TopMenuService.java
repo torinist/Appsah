@@ -1,16 +1,15 @@
 package logic;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.Dependent;
-import javax.inject.Named;
 
 import bean.TopMenuBean;
 
-@Named
 @Dependent
-public class TopMenuService {
+public class TopMenuService implements Serializable {
 
 	public List<TopMenuBean> topMenuCreate() {
 		// 本来ならDBから取得する

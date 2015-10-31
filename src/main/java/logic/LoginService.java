@@ -1,6 +1,8 @@
 package logic;
 
-import javax.enterprise.context.RequestScoped;
+import java.io.Serializable;
+
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
 import model.Member;
@@ -11,8 +13,8 @@ import util.Constant;
 import bean.LoginUserBean;
 import dao.MemberDao;
 
-@RequestScoped
-public class LoginService {
+@Dependent
+public class LoginService implements Serializable {
 
 	@Inject
 	MemberDao dao;

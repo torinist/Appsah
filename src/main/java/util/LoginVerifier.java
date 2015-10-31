@@ -1,5 +1,7 @@
 package util;
 
+import java.io.Serializable;
+
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
@@ -13,7 +15,7 @@ import bean.LoginUserBean;
  *
  */
 @Dependent
-public class LoginVerifier {
+public class LoginVerifier implements Serializable {
 
 	@Inject
 	Logger logger;

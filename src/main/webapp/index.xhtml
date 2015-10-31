@@ -10,7 +10,7 @@
 		<title>index</title>
 		<h:outputStylesheet library="css" name="default.css" />
 	</h:head>
-	
+
 	<h:body>
 	  <div class="header">
 	  	<h:panelGrid columns="3" columnClasses="headerColumnLeft,headerColumn,headerColumnRight" styleClass="headerGrid">
@@ -38,7 +38,8 @@
 	      </div>
 	      <div class="ui-grid-col-6">
 	      	<h:form>
-        	  <p:dataScroller value="#{indexBackingBean.conb}" var="conb" chunkSize="10">
+	      	  <p:poll update="twitterLike" interval="30" listener="#{indexBackingBean.updateTwitter}"/>
+        	  <p:dataScroller value="#{indexBackingBean.conb}" var="conb" chunkSize="10" id="twitterLike">
         		<f:facet name="header">
         		  <h:panelGrid columns="3" columnClasses="headerColumnLeft,headerColumn,headerColumnRight" styleClass="headerGrid">
 			  		<h:outputText/>
@@ -46,7 +47,7 @@
 			  		<p:commandButton value="追加" icon="fa fa-plus-circle" actionListener="#{indexBackingBean.viewContactEdit}"/>
 			  	  </h:panelGrid>
         		</f:facet>
-        		
+
         		<h:panelGrid columns="2" columnClasses="logo,detail" styleClass="twiGrid1">
         		  <h:graphicImage library="images" name="icon.jpg" />
 	        	  <p:outputPanel>
@@ -58,7 +59,7 @@
 	        	  		<h:outputText value="#{conb.writer}" style="color: #ff0000; font-size: 80%;"/>
 	        	  		<h:outputText value="#{conb.datetime}" style="font-size: 80%;"/>
 	        	  	</h:panelGrid>
-        	  		
+
 	        	  </p:outputPanel>
 	        	</h:panelGrid>
 	        	<p:separator />
