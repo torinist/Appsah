@@ -50,7 +50,7 @@ public class LoginBackingBean {
 		int result = loginService.login(empId);
 		if (result == Constant.SUCCESS) {
 			logger.info("ログイン成功：" + empId);
-			return "index.xhtml";
+			return "index?faces-redirect=true";
 		} else {
 			// empIdがデータベースに存在しない場合。また、returnをnullにする
 			FacesContext.getCurrentInstance().addMessage(

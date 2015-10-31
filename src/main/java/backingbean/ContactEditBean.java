@@ -80,7 +80,7 @@ public class ContactEditBean {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "INFO",
-							"Complete."));
+							"登録完了したよ！"));
 			displayInit();
 		}
 	}

@@ -5,7 +5,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
   <h:head>
-  	<title>contactEdit</title>
+  	<title>連絡追加</title>
   	<h:outputStylesheet library="css" name="default.css" />
   </h:head>
   <h:body>
@@ -13,7 +13,7 @@
   		<p:messages id="messages" severity="info,warn" showDetail="true" autoUpdate="true" closable="true" />
   		<p:panelGrid columns="3" id="grid" styleClass="contactEditDialogGrid">
   			<h:outputText value="content"  for="default"/>
-  			<p:inputTextarea required="true" value="#{contactEditBean.content}" id="default"/>
+  			<p:inputTextarea required="true" value="#{contactEditBean.content}" id="default" style="width:300px;"/>
   			<p:message for="default"/>
   			<h:outputText value="投稿者："/>
   			<p:outputLabel value="#{contactEditBean.loginUserName}"/>
@@ -23,7 +23,7 @@
   			  <f:selectItems value="#{contactEditBean.categorys}" var="category" itemValue="#{category.id}" itemLabel="#{category.name}"/>
   			</p:selectOneMenu>
   		</p:panelGrid>
-  		<p:commandButton value="submit" update="grid" actionListener="#{contactEditBean.edit()}"/>
+  		<p:commandButton value="登録" update="grid" actionListener="#{contactEditBean.edit()}"/>
   	</h:form>
   </h:body>
 </html>

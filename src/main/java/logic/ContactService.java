@@ -25,7 +25,8 @@ public class ContactService implements Serializable {
 		List<Contact> list = conDao.findAllByDelflag();
 		List<ContactBean> conb = new ArrayList<ContactBean>();
 
-		for (Contact c : list) {
+		for(int i=list.size();i>0;i--) {
+			Contact c = list.get(i-1);
 			ContactBean cb = new ContactBean(c.getId(), c.getContents(),
 					c.getMember().getId(), c.getMember().getName(),
 					c.getMasterContactCategory().getId(),
