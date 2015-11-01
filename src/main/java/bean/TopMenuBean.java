@@ -2,27 +2,29 @@ package bean;
 
 import java.util.List;
 
+import model.TopMenu;
+
 /*
  *  入れ子メニュークラス
  */
 public class TopMenuBean {
 
-	private String parent;			// 親メニュー
-	private List<String> children;	// 子メニュー
+	private TopMenu parent; // 親メニュー
+	private List<TopMenu> children; // 子メニュー
 
-	public String getParent() {
+	public TopMenu getParent() {
 		return parent;
 	}
 
-	public void setParent(String parent) {
+	public void setParent(TopMenu parent) {
 		this.parent = parent;
 	}
 
-	public List<String> getChildren() {
+	public List<TopMenu> getChildren() {
 		return children;
 	}
 
-	public void setChildren(List<String> children) {
+	public void setChildren(List<TopMenu> children) {
 		this.children = children;
 	}
 

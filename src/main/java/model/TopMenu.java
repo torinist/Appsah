@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -15,8 +16,14 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="top_menu")
-@NamedQuery(name="TopMenu.findAll", query="SELECT t FROM TopMenu t")
+@NamedQueries({
+	@NamedQuery(name=TopMenu.FIND_ALL, query="SELECT t FROM TopMenu t"),
+	@NamedQuery(name=TopMenu.FIND_ALL_BY_DELFLAG, query="SELECT t FROM TopMenu t WHERE t.delflag='false'")
+})
+
 public class TopMenu implements Serializable {
+	public final static String FIND_ALL = "TopMenu.findAll";
+	public final static String FIND_ALL_BY_DELFLAG = "TopMenu.findAllByDelflag";
 	private static final long serialVersionUID = 1L;
 
 	@Id

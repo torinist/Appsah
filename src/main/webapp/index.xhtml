@@ -15,7 +15,7 @@
 	  <div class="header">
 	  	<h:panelGrid columns="3" columnClasses="headerColumnLeft,headerColumn,headerColumnRight" styleClass="headerGrid">
 	  		<h:outputText value="グループ内ポータル"/>
-	  		<p:commandButton value="情報共有版" icon="fa fa-bookmark"/>
+	  		<p:button value="情報共有版" icon="fa fa-bookmark" outcome="shareInfo"/>
 	  		<ui:fragment rendered="#{indexBackingBean.loginVerify}">
 	  			<p:button value="ログイン" icon="fa fa-male" outcome="login"/>
 	  		</ui:fragment>
@@ -29,13 +29,7 @@
 	  </div>
 	  <div class="main ui-grid ui-grid-responsive">
 	    <div class="ui-grid-row">
-	      <div class="ui-grid-col-3">
-	      <!-- メニューは静的コンテンツに移すためコメントアウト
-	        <h:form>
-	          <p:menu style="width:90%;" model="#{indexBackingBean.menuModel}" styleClass="horizontalmenu" />
-	        </h:form>
-	       -->
-	      </div>
+	      <div class="ui-grid-col-3" />
 	      <div class="ui-grid-col-6">
 	      	<h:form>
 	      	  <p:poll update="twitterLike" interval="20" listener="#{indexBackingBean.updateTwitter}"/>
