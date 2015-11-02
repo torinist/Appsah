@@ -76,6 +76,10 @@ table.tableGrid .tableLabel {
 	color:#e1e463;
 }
 
+table.tabInnerLink {
+	margin: 10px;
+}
+
 div.loginForm {
 	text-align: center;
 }

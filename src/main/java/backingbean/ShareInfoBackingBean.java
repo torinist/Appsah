@@ -1,19 +1,19 @@
 package backingbean;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import logic.TopMenuService;
 import model.TopMenu;
 
-import org.primefaces.model.menu.DefaultMenuItem;
-import org.primefaces.model.menu.DefaultMenuModel;
-import org.primefaces.model.menu.DefaultSubMenu;
 import org.primefaces.model.menu.MenuModel;
 
 import bean.TopMenuBean;
@@ -26,27 +26,59 @@ public class ShareInfoBackingBean {
 	@Inject
 	TopMenuService topMenuService;
 
+	List<TopMenuBean> tmList;
+
 	@PostConstruct
 	public void init() {
-		List<TopMenuBean> tmList = new ArrayList<TopMenuBean>();
 		tmList = topMenuService.topMenuCreate();
+//
+//		menuModel = new DefaultMenuModel();
+//
+//		// TODO: メニューの組み合わせを考えたほうがよさそう。メニューとして表示させるか、ただのlinkとして表示させるか
+//		// TODO: 思い切って単なるHTMLにするというのも手かも。htmlとjavaの接続にはJAX-RS使うとか
+//		for (TopMenuBean tm : tmList) {
+//			DefaultSubMenu dsm = new DefaultSubMenu(tm.getParent().getName());
+//			System.out.println(tm.getParent().getName());
+//			// List<String> children = new ArrayList<String>();
+//			for (TopMenu child : tm.getChildren()) {
+//				// 親（dsm）の要素としてitemを追加
+//				DefaultMenuItem item = new DefaultMenuItem(child.getName());
+//				dsm.addElement(item);
+//			}
+//			// 親と子のセット（dsm）をmenuModelに追加
+//			menuModel.addElement(dsm);
+//		}
+	}
 
-		menuModel = new DefaultMenuModel();
+	public void addMenu() {
+		// TODO
+	}
 
-		// TODO: メニューの組み合わせを考えたほうがよさそう。メニューとして表示させるか、ただのlinkとして表示させるか
-		// TODO: 思い切って単なるHTMLにするというのも手かも。htmlとjavaの接続にはJAX-RS使うとか
-		for (TopMenuBean tm : tmList) {
-			DefaultSubMenu dsm = new DefaultSubMenu(tm.getParent().getName());
-			System.out.println(tm.getParent().getName());
-			// List<String> children = new ArrayList<String>();
-			for (TopMenu child : tm.getChildren()) {
-				// 親（dsm）の要素としてitemを追加
-				DefaultMenuItem item = new DefaultMenuItem(child.getName());
-				dsm.addElement(item);
-			}
-			// 親と子のセット（dsm）をmenuModelに追加
-			menuModel.addElement(dsm);
-		}
+	public String clickMenu() {
+		// JSFアプリケーションの現在の状態を保持しているオブジェクト
+		FacesContext context = FacesContext.getCurrentInstance();
+		// ExternalContextはRequestやSessionスコープの中で管理されているオブジェクトを取り出すことができる
+		ExternalContext exContext = context.getExternalContext();
+		// getRequestMapはRequestスコープで管理されている情報をMapで取得する
+		Map map = exContext.getRequestMap();
+		// Mapからchild変数に対応付けられているオブジェクトが取得できる
+		TopMenu child = (TopMenu)map.get("child");
+		System.out.println("child: " + child.getName());
+
+		// 次のページに遷移する
+		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+		flash.put("resources", child.getUrl());
+
+		return "textResourcesShow?faces-redirect=true";
+
+//		Map<String, List<String>> param = new HashMap<String, List<String>>();
+//		List<String> list = new ArrayList<String>();
+//		list.add(child.getId());
+//		list.add(child.getName());
+//		list.add(child.getUrl());
+//		param.put("child", list);
+//
+//		RequestContext.getCurrentInstance().openDialog("textResourcesShow", null, param);
 	}
 
 	public MenuModel getMenuModel() {
@@ -55,6 +87,14 @@ public class ShareInfoBackingBean {
 
 	public void setMenuModel(MenuModel menuModel) {
 		this.menuModel = menuModel;
+	}
+
+	public List<TopMenuBean> getTmList() {
+		return tmList;
+	}
+
+	public void setTmList(List<TopMenuBean> tmList) {
+		this.tmList = tmList;
 	}
 
 }

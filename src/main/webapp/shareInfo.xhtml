@@ -14,8 +14,26 @@
 	<h:body>
 	  <div class="ui-grid-col-6">
 	  	<h:outputLabel value="情報共有掲示板"/>
-	 	<h:form>
-          <p:menu model="#{shareInfoBackingBean.menuModel}" styleClass="horizontalmenu"/>
+        <h:form>
+          <p:tabView var="tm" value="#{shareInfoBackingBean.tmList}" tabindex="">
+           	<p:tab title="#{tm.parent.name}">
+           	  <div style="text-align: right;padding-bottom: 10px;">
+           	    <p:commandButton value="追加" icon="fa fa-plus-circle" actionListener="#{shareInfoBackingBean.addMenu}"/>
+           	  </div>
+           	  <p:dataTable var="child" value="#{tm.children}">
+           	    <p:column>
+           	      <p:commandLink value="#{child.name}" action="#{shareInfoBackingBean.clickMenu}"/>
+           	    </p:column>
+           	  </p:dataTable>
+           	  <!-- <h:panelGrid columns="5" columnClasses="tabInnerLink" >
+           	  	<ui:repeat var="child" value="#{tm.children}">
+           	  	  <p:row>
+           	  	  <p:outputLabel value="#{child.name}"/>
+           	  	  </p:row>
+           	    </ui:repeat>
+           	  </h:panelGrid> -->
+           	</p:tab>
+          </p:tabView>
         </h:form>
 	  </div>
 	  <div class="ui-grid-col-6">
