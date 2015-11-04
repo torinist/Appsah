@@ -1,6 +1,8 @@
 package bean;
 
-public class ContactBean {
+import java.io.Serializable;
+
+public class ContactBean implements Serializable {
 
 	private int id; // コンテンツのID
 	private String content; // 内容
@@ -9,6 +11,10 @@ public class ContactBean {
 	private String categoryId; // カテゴリID
 	private String categoryName; // カテゴリ名
 	private String datetime; // 投稿日時
+
+	public ContactBean() {
+		// デフォルトコンストラクタ
+	}
 
 	public ContactBean(int id, String content, String writerId, String writer,
 			String categoryId, String categoryName, String datetime) {

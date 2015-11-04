@@ -1,16 +1,22 @@
 package bean;
 
-public class WriterBean {
+import java.io.Serializable;
+
+public class WriterBean implements Serializable {
 
 	private String id;
 
 	private String name;
 
+	public WriterBean() {
+		// デフォルトコンストラクタ
+	}
+
 	public WriterBean(String id, String name) {
 		this.id = id;
 		this.name = name;
 	}
-	
+
 	public String getId() {
 		return id;
 	}

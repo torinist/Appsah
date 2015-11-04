@@ -1,5 +1,6 @@
 package bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 import model.TopMenu;
@@ -7,10 +8,14 @@ import model.TopMenu;
 /*
  *  入れ子メニュークラス
  */
-public class TopMenuBean {
+public class TopMenuBean implements Serializable {
 
 	private TopMenu parent; // 親メニュー
 	private List<TopMenu> children; // 子メニュー
+
+	public TopMenuBean() {
+		// デフォルトコンストラクタ
+	}
 
 	public TopMenu getParent() {
 		return parent;
