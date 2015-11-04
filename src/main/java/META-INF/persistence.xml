@@ -5,16 +5,17 @@
 		<class>model.MasterContactCategory</class>
 		<class>model.MasterMemcat</class>
 		<class>model.Member</class>
-		<class>model.TopMenu</class>
 		<class>model.Contact</class>
+		<class>model.TopMenu</class>
 
 	    <!-- アプリケーション稼働時にはJTA Datasourceを使うため使われない。 -->
 	    <!-- IDEが使う可能性はある。 -->
 	    <properties>
-	        <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3316/appsahdb?useUnicode=true&amp;zeroDateTimeBehavior=convertToNull"/>
+	        <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3316/appsahdb?useUnicode=true&amp;zeroDateTimeBehavior=convertToNull&amp;UTF-8"/>
 	        <property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 	        <property name="eclipselink.jdbc.user" value="root"/>
 	        <property name="eclipselink.jdbc.password" value="0206"/>
+	        <property name="eclipselink.cache.type.default" value="NONE"/>
 	    </properties>
 	</persistence-unit>
 </persistence>

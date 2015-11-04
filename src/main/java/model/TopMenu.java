@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -38,7 +39,8 @@ public class TopMenu implements Serializable {
 
 	private String restricter;
 
-	private String url;
+	@Lob
+	private byte[] menufile;
 
 	public TopMenu() {
 	}
@@ -83,12 +85,12 @@ public class TopMenu implements Serializable {
 		this.restricter = restricter;
 	}
 
-	public String getUrl() {
-		return this.url;
+	public byte[] getMenufile() {
+		return this.menufile;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setMenufile(byte[] menufile) {
+		this.menufile = menufile;
 	}
 
 }

@@ -67,7 +67,7 @@ public class ShareInfoBackingBean {
 
 		// 次のページに遷移する
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-		flash.put("resources", child.getUrl());
+		flash.put("resources", child.getMenufile());
 
 		return "textResourcesShow?faces-redirect=true";
 
