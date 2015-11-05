@@ -12,10 +12,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import logic.TopMenuService;
-import model.TopMenu;
 
 import org.primefaces.model.menu.MenuModel;
 
+import bean.MenuBean;
 import bean.TopMenuBean;
 
 @Named
@@ -30,7 +30,11 @@ public class ShareInfoBackingBean {
 
 	@PostConstruct
 	public void init() {
-		tmList = topMenuService.topMenuCreate();
+		try {
+			tmList = topMenuService.topMenuCreate();
+		} catch (Exception e) {
+			// TODO: 例外処理
+		}
 //
 //		menuModel = new DefaultMenuModel();
 //
@@ -62,14 +66,13 @@ public class ShareInfoBackingBean {
 		// getRequestMapはRequestスコープで管理されている情報をMapで取得する
 		Map map = exContext.getRequestMap();
 		// Mapからchild変数に対応付けられているオブジェクトが取得できる
-		TopMenu child = (TopMenu)map.get("child");
-		System.out.println("child: " + child.getName());
+		MenuBean child = (MenuBean)map.get("child");
 
 		// 次のページに遷移する
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-		flash.put("resources", child.getMenufile());
+		flash.put("resources", child);
 
-		return "textResourcesShow?faces-redirect=true";
+		return "menuContentsDetail?faces-redirect=true";
 
 //		Map<String, List<String>> param = new HashMap<String, List<String>>();
 //		List<String> list = new ArrayList<String>();

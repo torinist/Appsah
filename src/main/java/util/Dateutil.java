@@ -1,11 +1,8 @@
 package util;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Locale;
 
 public class Dateutil {
@@ -27,11 +24,6 @@ public class Dateutil {
 //		return sdf.format(date);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT, new Locale("ja", "JP", "JP"));
 		return zdt.format(formatter);
-	}
-
-	public static Date stringToDate(String date) throws ParseException {
-		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
-		return sdf.parse(date);
 	}
 
 }

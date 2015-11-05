@@ -15,9 +15,14 @@ div.header {
 
 div.footer {
 	background-color: #495460;
-	height: 40px;
 	font-weight: bold;
 	color: #e1e463;
+	text-align: center;
+}
+
+div.updateinfo {
+	font-size: 70%;
+	text-align: right;
 }
 
 table.headerGrid {

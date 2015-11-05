@@ -12,32 +12,43 @@
 	</h:head>
 
 	<h:body>
-	  <div class="ui-grid-col-6">
-	  	<h:outputLabel value="情報共有掲示板"/>
-        <h:form>
-          <p:tabView var="tm" value="#{shareInfoBackingBean.tmList}" tabindex="">
-           	<p:tab title="#{tm.parent.name}">
-           	  <div style="text-align: right;padding-bottom: 10px;">
-           	    <p:commandButton value="追加" icon="fa fa-plus-circle" actionListener="#{shareInfoBackingBean.addMenu}"/>
-           	  </div>
-           	  <p:dataTable var="child" value="#{tm.children}">
-           	    <p:column>
-           	      <p:commandLink value="#{child.name}" action="#{shareInfoBackingBean.clickMenu}"/>
-           	    </p:column>
-           	  </p:dataTable>
-           	  <!-- <h:panelGrid columns="5" columnClasses="tabInnerLink" >
-           	  	<ui:repeat var="child" value="#{tm.children}">
-           	  	  <p:row>
-           	  	  <p:outputLabel value="#{child.name}"/>
-           	  	  </p:row>
-           	    </ui:repeat>
-           	  </h:panelGrid> -->
-           	</p:tab>
-          </p:tabView>
-        </h:form>
-	  </div>
-	  <div class="ui-grid-col-6">
-	  	<h:outputLabel value="各担当者"/>
+	<div class="header">
+	  	  <h:panelGrid columns="3" columnClasses="headerColumnLeft,headerColumn,headerColumnRight" styleClass="headerGrid">
+	  		<h:outputText value="グループ内ポータル"/>
+	  		<p:button value="情報共有版" icon="fa fa-bookmark" outcome="shareInfo"/>
+	  		<h:outputText/>
+	  	  </h:panelGrid>
+		</div>
+	  <div class="main ui-grid ui-grid-responsive">
+	    <div class="ui-grid-row">
+		  <div class="ui-grid-col-6">
+		  	<h:outputLabel value="情報共有掲示板"/>
+	        <h:form>
+	          <p:tabView var="tm" value="#{shareInfoBackingBean.tmList}" tabindex="">
+	           	<p:tab title="#{tm.parent.name}">
+	           	  <div style="text-align: right;padding-bottom: 10px;">
+	           	    <p:commandButton value="追加" icon="fa fa-plus-circle" actionListener="#{shareInfoBackingBean.addMenu}"/>
+	           	  </div>
+	           	  <p:dataTable var="child" value="#{tm.children}">
+	           	    <p:column>
+	           	      <p:commandLink value="#{child.name}" action="#{shareInfoBackingBean.clickMenu}"/>
+	           	    </p:column>
+	           	  </p:dataTable>
+	           	  <!-- <h:panelGrid columns="5" columnClasses="tabInnerLink" >
+	           	  	<ui:repeat var="child" value="#{tm.children}">
+	           	  	  <p:row>
+	           	  	  <p:outputLabel value="#{child.name}"/>
+	           	  	  </p:row>
+	           	    </ui:repeat>
+	           	  </h:panelGrid> -->
+	           	</p:tab>
+	          </p:tabView>
+	        </h:form>
+		  </div>
+		  <div class="ui-grid-col-6">
+		  	<h:outputLabel value="各担当者"/>
+		  </div>
+		</div>
 	  </div>
 	</h:body>
 

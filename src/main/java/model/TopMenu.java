@@ -5,7 +5,9 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -27,10 +29,21 @@ public class TopMenu implements Serializable {
 	public final static String FIND_ALL_BY_DELFLAG = "TopMenu.findAllByDelflag";
 	private static final long serialVersionUID = 1L;
 
+
+
 	@Id
 	private String id;
 
 	private byte delflag;
+
+	private String lastupdate;
+
+	@ManyToOne
+	@JoinColumn(name="LASTUPMEMBER")
+	private Member member;
+
+	@Lob
+	private byte[] menucontents;
 
 	private String name;
 
@@ -38,9 +51,6 @@ public class TopMenu implements Serializable {
 	private String parentId;
 
 	private String restricter;
-
-	@Lob
-	private byte[] menufile;
 
 	public TopMenu() {
 	}
@@ -59,6 +69,30 @@ public class TopMenu implements Serializable {
 
 	public void setDelflag(byte delflag) {
 		this.delflag = delflag;
+	}
+
+	public String getLastupdate() {
+		return this.lastupdate;
+	}
+
+	public void setLastupdate(String lastupdate) {
+		this.lastupdate = lastupdate;
+	}
+
+	public Member getMember() {
+		return this.member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
+	public byte[] getMenucontents() {
+		return this.menucontents;
+	}
+
+	public void setMenucontents(byte[] menucontents) {
+		this.menucontents = menucontents;
 	}
 
 	public String getName() {
@@ -83,14 +117,6 @@ public class TopMenu implements Serializable {
 
 	public void setRestricter(String restricter) {
 		this.restricter = restricter;
-	}
-
-	public byte[] getMenufile() {
-		return this.menufile;
-	}
-
-	public void setMenufile(byte[] menufile) {
-		this.menufile = menufile;
 	}
 
 }

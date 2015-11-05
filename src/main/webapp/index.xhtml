@@ -15,7 +15,10 @@
 	  <div class="header">
 	  	<h:panelGrid columns="3" columnClasses="headerColumnLeft,headerColumn,headerColumnRight" styleClass="headerGrid">
 	  		<h:outputText value="グループ内ポータル"/>
-	  		<p:button value="情報共有版" icon="fa fa-bookmark" outcome="shareInfo"/>
+	  		<div>
+	  			<p:button value="情報共有版" icon="fa fa-bookmark" outcome="shareInfo"/>
+	  			<p:button value="情報共有版" icon="fa fa-bookmark" outcome="shareInfo"/>
+	  		</div>
 	  		<ui:fragment rendered="#{indexBackingBean.loginVerify}">
 	  			<p:button value="ログイン" icon="fa fa-male" outcome="login"/>
 	  		</ui:fragment>
