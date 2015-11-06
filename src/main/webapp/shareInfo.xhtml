@@ -13,12 +13,19 @@
 
 	<h:body>
 	<div class="header">
-	  	  <h:panelGrid columns="3" columnClasses="headerColumnLeft,headerColumn,headerColumnRight" styleClass="headerGrid">
-	  		<h:outputText value="グループ内ポータル"/>
-	  		<p:button value="情報共有版" icon="fa fa-bookmark" outcome="shareInfo"/>
-	  		<h:outputText/>
-	  	  </h:panelGrid>
-		</div>
+	  	<table class="headerGrid">
+	  		<tr>
+	  			<td class="headerColumnLeft"><h:outputText value="グループ内ポータル"/></td>
+	  			<td class="headerColumn">
+	  				<p:button value="ポータルトップ" icon="fa fa-bookmark" outcome="index"/>
+	  				<p:button value="情報共有版" icon="fa fa-bookmark" outcome="shareInfo"/>
+	  			</td>
+	  			<td class="headerColumnRight">
+	  				<!-- TODO: headerをテンプレート化したらログインボタンもここに表示する -->
+			  	</td>
+	  		</tr>
+	  	</table>
+	  </div>
 	  <div class="main ui-grid ui-grid-responsive">
 	    <div class="ui-grid-row">
 		  <div class="ui-grid-col-6">
@@ -49,6 +56,9 @@
 		  	<h:outputLabel value="各担当者"/>
 		  </div>
 		</div>
+	  </div>
+	  <div class="footer">
+	    Copyright 2015 mo
 	  </div>
 	</h:body>
 

@@ -23,6 +23,8 @@ public class LoginVerifier implements Serializable {
 	@Inject
 	LoginUserBean loginUser;
 
+	// trueはログインしていない
+	// falseはログインしている
 	public Boolean loginVerify() {
 		if(loginUser.getUserId()==null) {
 			logger.info("ログインしていません。");

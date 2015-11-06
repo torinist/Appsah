@@ -26,17 +26,31 @@ public class MenuBean implements Serializable {
 	// 最終更新日時
 	private String lastupdate;
 
+	// 親menuのID
+	private String parentId;
+
+	// 権限ID
+	private String restricterId;
+
+	// 権限名
+	private String restricterName;
+
 	public MenuBean() {
 		// デフォルトコンストラクタ
 	}
 
-	public MenuBean(String id, String name, String menucontents, String lastupMemberId, String lastupMemberName, String lastupdate) {
+	public MenuBean(String id, String name, String menucontents,
+			String lastupMemberId, String lastupMemberName, String lastupdate,
+			String parentId, String restricterId, String restricterName) {
 		this.id = id;
 		this.name = name;
 		this.menucontents = menucontents;
 		this.lastupMemberId = lastupMemberId;
 		this.lastupMemberName = lastupMemberName;
 		this.lastupdate = lastupdate;
+		this.parentId = parentId;
+		this.restricterId = restricterId;
+		this.restricterName = restricterName;
 	}
 
 	public String getId() {
@@ -85,6 +99,30 @@ public class MenuBean implements Serializable {
 
 	public void setLastupdate(String lastupdate) {
 		this.lastupdate = lastupdate;
+	}
+
+	public String getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
+	}
+
+	public String getRestricterId() {
+		return restricterId;
+	}
+
+	public void setRestricterId(String restricterId) {
+		this.restricterId = restricterId;
+	}
+
+	public String getRestricterName() {
+		return restricterName;
+	}
+
+	public void setRestricterName(String restricterName) {
+		this.restricterName = restricterName;
 	}
 
 }

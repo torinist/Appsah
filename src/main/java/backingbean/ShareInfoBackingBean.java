@@ -54,8 +54,26 @@ public class ShareInfoBackingBean {
 //		}
 	}
 
-	public void addMenu() {
-		// TODO
+	// TODO dialog表示にしているが、参照等と同じページの方が良いのかは考えもの
+	public String addMenu() {
+		// TODO：ホントはダイアログ表示にしたい
+//		Map map = FacesContext.getCurrentInstance().getExternalContext().getRequestMap();
+//		TopMenuBean tmb = (TopMenuBean)map.get("tm");
+//
+//		// dialogにparentのidを受け渡してdialogを開く
+//		RequestContext rq = RequestContext.getCurrentInstance();
+//		rq.addCallbackParam("parentId", tmb.getParent().getId());
+//		rq.getCurrentInstance().openDialog("menuContentsEdit");
+
+		Map map = FacesContext.getCurrentInstance().getExternalContext().getRequestMap();
+		TopMenuBean tmb = (TopMenuBean)map.get("tm");
+
+		// 次のページに遷移する
+		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+		flash.put("parentId", tmb.getParent().getId());
+
+		return "menuContentsDetail?faces-redirect=true";
+
 	}
 
 	public String clickMenu() {
@@ -70,7 +88,7 @@ public class ShareInfoBackingBean {
 
 		// 次のページに遷移する
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-		flash.put("resources", child);
+		flash.put("menuId", child.getId());
 
 		return "menuContentsDetail?faces-redirect=true";
 

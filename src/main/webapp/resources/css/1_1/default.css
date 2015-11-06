@@ -20,9 +20,14 @@ div.footer {
 	text-align: center;
 }
 
+/* 更新情報の表示場所 */
 div.updateinfo {
 	font-size: 70%;
 	text-align: right;
+}
+
+div.contentsEdit {
+	width: 100%;
 }
 
 table.headerGrid {

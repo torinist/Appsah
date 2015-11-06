@@ -7,29 +7,24 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 
 /**
  * The persistent class for the top_menu database table.
  *
  */
 @Entity
-@Table(name="top_menu")
+@Table(name = "top_menu")
 @NamedQueries({
-	@NamedQuery(name=TopMenu.FIND_ALL, query="SELECT t FROM TopMenu t"),
-	@NamedQuery(name=TopMenu.FIND_ALL_BY_DELFLAG, query="SELECT t FROM TopMenu t WHERE t.delflag='false'")
-})
-
+		@NamedQuery(name = TopMenu.FIND_ALL, query = "SELECT t FROM TopMenu t"),
+		@NamedQuery(name = TopMenu.FIND_ALL_BY_DELFLAG, query = "SELECT t FROM TopMenu t WHERE t.delflag='false'") })
 public class TopMenu implements Serializable {
 	public final static String FIND_ALL = "TopMenu.findAll";
 	public final static String FIND_ALL_BY_DELFLAG = "TopMenu.findAllByDelflag";
 	private static final long serialVersionUID = 1L;
-
-
 
 	@Id
 	private String id;
@@ -38,8 +33,8 @@ public class TopMenu implements Serializable {
 
 	private String lastupdate;
 
-	@ManyToOne
-	@JoinColumn(name="LASTUPMEMBER")
+	@OneToOne
+	@JoinColumn(name = "LASTUPMEMBER")
 	private Member member;
 
 	@Lob
@@ -47,10 +42,13 @@ public class TopMenu implements Serializable {
 
 	private String name;
 
-	@Column(name="PARENT_ID")
+	@Column(name = "PARENT_ID")
 	private String parentId;
 
-	private String restricter;
+	// RESTRICTERが3であれば、1、2の権限を認める、といった仕組み
+	@OneToOne
+	@JoinColumn(name = "RESTRICTER")
+	private MasterMemcat memcat;
 
 	public TopMenu() {
 	}
@@ -111,12 +109,12 @@ public class TopMenu implements Serializable {
 		this.parentId = parentId;
 	}
 
-	public String getRestricter() {
-		return this.restricter;
+	public MasterMemcat getMemcat() {
+		return memcat;
 	}
 
-	public void setRestricter(String restricter) {
-		this.restricter = restricter;
+	public void setMemcat(MasterMemcat memcat) {
+		this.memcat = memcat;
 	}
 
 }
