@@ -21,7 +21,7 @@
 	  			<td class="headerColumnLeft"><h:outputText value="グループ内ポータル"/></td>
 	  			<td class="headerColumn">
 	  				<p:button value="ポータルトップ" icon="fa fa-bookmark" outcome="index"/>
-	  				<p:button value="NORN" icon="fa fa-bookmark" outcome="shareInfo"/>
+	  				<p:button value="NORN" icon="fa fa-book" outcome="shareInfo"/>
 	  			</td>
 	  			<td class="headerColumnRight">
 	  				<!-- TODO: headerをテンプレート化したらログインボタンもここに表示する -->
@@ -41,12 +41,14 @@
 			    <p:inputText value="#{menuContentsEditBackingBean.menu.name}" rendered="#{menuContentsEditBackingBean.editable}"/>
 			  </h1>
 			  <p:selectBooleanButton offLabel="参照" onLabel="変更" onchange="submit()" value="#{menuContentsEditBackingBean.editable}" disabled="#{menuContentsEditBackingBean.additional}"/>
-			  <p:commandButton value="保存する" action="#{menuContentsEditBackingBean.edit()}" rendered="#{menuContentsEditBackingBean.editable}"/>
+			  <p:commandButton value="保存する" action="#{menuContentsEditBackingBean.edit()}" rendered="#{menuContentsEditBackingBean.editable}" icon="fa fa-plus-circle"/>
 			  <div class="contentsEdit">
 			    <p:outputLabel value="#{menuContentsEditBackingBean.menu.menucontents}" escape="false" rendered="#{!menuContentsEditBackingBean.editable}"/>
 			    <p:inputTextarea value="#{menuContentsEditBackingBean.menu.menucontents}" rendered="#{menuContentsEditBackingBean.editable}" style="width:100%;height:350px;" autoResize="false"/>
 			  </div>
-			  <p:commandButton value="削除する" rendered="#{menuContentsEditBackingBean.editable}" disabled="#{menuContentsEditBackingBean.additional}"/>
+			  <div class="alignRight">
+			  	<p:commandButton value="削除する" rendered="#{menuContentsEditBackingBean.editable}" disabled="#{menuContentsEditBackingBean.additional}" icon="fa fa-trash-o"/>
+			  </div>
 			  <div class="updateinfo">
 			    <p:outputLabel value="更新日：#{menuContentsEditBackingBean.menu.lastupdate}" />&nbsp;&nbsp;
 				<p:outputLabel value="更新者：#{menuContentsEditBackingBean.menu.lastupMemberName}"/>

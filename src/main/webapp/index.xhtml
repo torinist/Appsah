@@ -18,7 +18,7 @@
 	  			<td class="headerColumnLeft"><h:outputText value="グループ内ポータル"/></td>
 	  			<td class="headerColumn">
 	  				<p:button value="ポータルトップ" icon="fa fa-bookmark" outcome="index"/>
-	  				<p:button value="NORN" icon="fa fa-bookmark" outcome="shareInfo"/>
+	  				<p:button value="NORN" icon="fa fa-book" outcome="shareInfo"/>
 	  			</td>
 	  			<td class="headerColumnRight">
 	  				<ui:fragment rendered="#{indexBackingBean.loginVerify}">
@@ -49,8 +49,7 @@
 			  	  </h:panelGrid>
         		</f:facet>
 
-        		<h:panelGrid columns="2" columnClasses="logo,detail" styleClass="twiGrid1">
-        		  <h:graphicImage library="images" name="icon.jpg" />
+        		<h:panelGrid columns="2" styleClass="twiGrid1">
 	        	  <p:outputPanel>
 	        	  	<h:panelGrid columns="3" cellpadding="5" columnClasses="pgLeft,pgCenter,pgRight" styleClass="twiGrid2">
 	        	  		<h:outputText value="#{conb.categoryName}"/>
@@ -60,8 +59,8 @@
 	        	  		<h:outputText value="#{conb.writer}" style="color: #ff0000; font-size: 80%;"/>
 	        	  		<h:outputText value="#{conb.datetime}" style="font-size: 80%;"/>
 	        	  	</h:panelGrid>
-
 	        	  </p:outputPanel>
+				  <p:commandButton icon="fa fa-remove"/>
 	        	</h:panelGrid>
 	        	<p:separator />
         	  </p:dataScroller>
