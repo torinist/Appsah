@@ -42,7 +42,7 @@ public class MenuContentsDetailBackingBean implements Serializable {
 				.getFlash();
 
 		// menuIdがnullでなければ詳細表示、編集
-		// parentIdがnullでなければ新規登録
+		// menuIdがnullであれば新規登録
 
 		String menuId = (String) flash.get("menuId");
 
@@ -69,7 +69,7 @@ public class MenuContentsDetailBackingBean implements Serializable {
 	}
 
 	// 決定ボタン押下
-	public String edit() {
+	public String edit() throws Exception {
 		menu.setLastupMemberId(loginUser.getUserId());
 		menu.setLastupMemberName(loginUser.getUserName());
 		topMenuService.editMenu(menu);
@@ -78,6 +78,7 @@ public class MenuContentsDetailBackingBean implements Serializable {
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext()
 				.getFlash();
 		flash.put("menuId", menu.getId());
+		flash.put("parentId", menu.getParentId());
 
 		return "menuContentsDetail?faces-redirect=true";
 	}

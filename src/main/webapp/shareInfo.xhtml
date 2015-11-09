@@ -34,7 +34,7 @@
 	          <p:tabView var="tm" value="#{shareInfoBackingBean.tmList}" tabindex="">
 	           	<p:tab title="#{tm.parent.name}">
 	           	  <div style="text-align: right;padding-bottom: 10px;">
-	           	    <p:commandButton value="追加" icon="fa fa-plus-circle" actionListener="#{shareInfoBackingBean.addMenu}"/>
+	           	    <p:commandButton value="追加" icon="fa fa-plus-circle" action="#{shareInfoBackingBean.addMenu()}"/>
 	           	  </div>
 	           	  <p:dataTable var="child" value="#{tm.children}">
 	           	    <p:column>

@@ -29,6 +29,9 @@ public class MenuBean implements Serializable {
 	// 親menuのID
 	private String parentId;
 
+	// 親menuの名前
+	private String parentName;
+
 	// 権限ID
 	private String restricterId;
 
@@ -41,7 +44,7 @@ public class MenuBean implements Serializable {
 
 	public MenuBean(String id, String name, String menucontents,
 			String lastupMemberId, String lastupMemberName, String lastupdate,
-			String parentId, String restricterId, String restricterName) {
+			String parentId, String parentName, String restricterId, String restricterName) {
 		this.id = id;
 		this.name = name;
 		this.menucontents = menucontents;
@@ -49,6 +52,7 @@ public class MenuBean implements Serializable {
 		this.lastupMemberName = lastupMemberName;
 		this.lastupdate = lastupdate;
 		this.parentId = parentId;
+		this.parentName = parentName;
 		this.restricterId = restricterId;
 		this.restricterName = restricterName;
 	}
@@ -123,6 +127,14 @@ public class MenuBean implements Serializable {
 
 	public void setRestricterName(String restricterName) {
 		this.restricterName = restricterName;
+	}
+
+	public String getParentName() {
+		return parentName;
+	}
+
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
 	}
 
 }

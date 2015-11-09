@@ -3,6 +3,7 @@ package logic;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.enterprise.context.Dependent;
@@ -30,6 +31,11 @@ public class TopMenuService implements Serializable {
 	@Inject
 	Logger logger;
 
+	/**
+	 * menuの作成
+	 * @return menuListを返す
+	 * @throws Exception
+	 */
 	public List<TopMenuBean> topMenuCreate() throws Exception {
 		List<TopMenu> list = topmenuDao.findAllByDelflag();
 		List<TopMenuBean> tmList = new ArrayList<TopMenuBean>();
@@ -44,7 +50,7 @@ public class TopMenuService implements Serializable {
 							StringUtil.byteToString(t.getMenucontents(),
 									Constant.CHARASET), t.getMember().getId(),
 							t.getMember().getName(), t.getLastupdate(),
-							t.getParentId(), t.getMemcat().getId(), t
+							t.getParentId(), null, t.getMemcat().getId(), t
 									.getMemcat().getName());
 					tm.setParent(mb);
 					List<MenuBean> children = new ArrayList<MenuBean>();
@@ -58,9 +64,9 @@ public class TopMenuService implements Serializable {
 												Constant.CHARASET), tc
 												.getMember().getId(), tc
 												.getMember().getName(),
-										tc.getLastupdate(), t.getParentId(), t
-												.getMemcat().getId(), t
-												.getMemcat().getName());
+												tc.getLastupdate(), tc.getParentId(),
+												topmenuDao.find(tc.getParentId()).getName(),
+												tc.getMemcat().getId(), tc.getMemcat().getName());
 								children.add(mbc);
 							}
 						}
@@ -77,6 +83,14 @@ public class TopMenuService implements Serializable {
 	}
 
 	/**
+	 * 親メニューのみ取得する
+	 * @return
+	 */
+	public List<MenuBean> getParentMenu() {
+		return null;
+	}
+
+	/**
 	 * メニューのコンテンツを1件取得する
 	 * @param menuId　メニューID
 	 * @return　IDに該当するメニューオブジェクト
@@ -85,12 +99,16 @@ public class TopMenuService implements Serializable {
 	public MenuBean findMenu(String menuId) throws UnsupportedEncodingException {
 		TopMenu tm = topmenuDao.find(menuId);
 		try {
+			String parentName = null;
+			if (tm.getParentId() != null) {
+				parentName = topmenuDao.find(tm.getParentId()).getName();
+			}
 			MenuBean mb = new MenuBean(tm.getId(), tm.getName(),
 					StringUtil.byteToString(tm.getMenucontents(),
 							Constant.CHARASET), tm.getMember().getId(), tm
 							.getMember().getName(), tm.getLastupdate(),
-					tm.getParentId(), tm.getMemcat().getId(), tm.getMemcat()
-							.getName());
+							tm.getParentId(), parentName,
+							tm.getMemcat().getId(), tm.getMemcat().getName());
 			return mb;
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
@@ -98,34 +116,97 @@ public class TopMenuService implements Serializable {
 		}
 	}
 
-	public void editMenu(MenuBean mb) {
-		// MenuBeanをTopMenuに変換する
-		TopMenu tm = new TopMenu();
-		tm.setId(mb.getId());
-		tm.setName(mb.getName());
-		tm.setParentId(mb.getParentId());
-		tm.setDelflag((byte) 0);
-		tm.setLastupdate(Dateutil.dateToString(Dateutil.getNowDate()));
 
-		Member m = new Member();
-		m.setId(mb.getLastupMemberId());
-		m.setName(mb.getLastupMemberName());
-		tm.setMember(m);
+	/**
+	 * 子メニューを追加する
+	 * @param mb 追加する子メニュー
+	 * @return 追加した子メニューのID
+	 * @throws Exception　エラーが発生した場合
+	 */
+	public String addMenu(MenuBean mb) throws Exception {
 
 		try {
+			TopMenu tm = new TopMenu();
+			tm.setId(getTopMenuNewId(mb.getParentId()));
+			tm.setLastupdate(Dateutil.dateToString(Dateutil.getNowDate()));
+
+			Member member = new Member();
+			member.setId(mb.getLastupMemberId());
+			member.setName(mb.getLastupMemberName());
+			tm.setMember(member);
+
+			MasterMemcat memcat = new MasterMemcat();
+			memcat.setId(mb.getRestricterId());
+			tm.setMemcat(memcat);
+
+			tm.setMenucontents(StringUtil.stringToByte(mb.getMenucontents(), Constant.CHARASET));
+			tm.setName(mb.getName());
+			tm.setParentId(mb.getParentId());
+			tm.setDelflag((byte) 0);
+			topmenuDao.create(tm);
+
+			return tm.getId();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	/**
+	* 指定したmenuを1件編集する
+	* @param mb 追加する子メニュー
+	 * @throws Exception エラーが発生した場合
+	*/
+	public void editMenu(MenuBean mb) throws Exception {
+		try {
+			// MenuBeanをTopMenuに変換する
+			TopMenu tm = new TopMenu();
+			tm.setId(mb.getId());
+			tm.setName(mb.getName());
+			tm.setParentId(mb.getParentId());
+			tm.setDelflag((byte) 0);
+			tm.setLastupdate(Dateutil.dateToString(Dateutil.getNowDate()));
+
+			Member m = new Member();
+			m.setId(mb.getLastupMemberId());
+			m.setName(mb.getLastupMemberName());
+			tm.setMember(m);
 			tm.setMenucontents(StringUtil.stringToByte(mb.getMenucontents(),
 					Constant.CHARASET));
-		} catch (UnsupportedEncodingException e) {
+			MasterMemcat mm = new MasterMemcat();
+			mm.setId(mb.getRestricterId());
+			mm.setName(mb.getRestricterName());
+			tm.setMemcat(mm);
+
+			// TopMenuをmergeする
+			topmenuDao.edit(tm);
+		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 
-		MasterMemcat mm = new MasterMemcat();
-		mm.setId(mb.getRestricterId());
-		mm.setName(mb.getRestricterName());
-		tm.setMemcat(mm);
 
-		// TopMenuをmergeする
-		topmenuDao.edit(tm);
+	}
+
+	/**
+	 * 引数のParentIdに紐づいているメニューの新しいIDを発行する
+	 * @param parentId 親ID
+	 * @return 子の新しいID
+	 */
+	public String getTopMenuNewId(String parentId) {
+		List<TopMenu> childList = topmenuDao.findByParentId(parentId);
+		childList.sort(new Comparator<TopMenu>() {
+			@Override
+			public int compare(TopMenu o1, TopMenu o2) {
+				return o1.getId().compareTo(o2.getId());
+			}
+		});
+		Integer maxId = Integer.parseInt(childList.get((childList.size())-1).getId());
+		maxId++;
+		String newId = maxId.toString();
+
+		return newId;
 	}
 
 }

@@ -28,6 +28,9 @@ public class ShareInfoBackingBean {
 
 	List<TopMenuBean> tmList;
 
+	@Inject
+	org.slf4j.Logger Logger;
+
 	@PostConstruct
 	public void init() {
 		try {
@@ -56,6 +59,7 @@ public class ShareInfoBackingBean {
 
 	// TODO dialog表示にしているが、参照等と同じページの方が良いのかは考えもの
 	public String addMenu() {
+		Logger.info("addMenuに突入します");
 		// TODO：ホントはダイアログ表示にしたい
 //		Map map = FacesContext.getCurrentInstance().getExternalContext().getRequestMap();
 //		TopMenuBean tmb = (TopMenuBean)map.get("tm");
@@ -72,7 +76,7 @@ public class ShareInfoBackingBean {
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		flash.put("parentId", tmb.getParent().getId());
 
-		return "menuContentsDetail?faces-redirect=true";
+		return "menuContentsEdit?faces-redirect=true";
 
 	}
 
@@ -88,9 +92,10 @@ public class ShareInfoBackingBean {
 
 		// 次のページに遷移する
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+		flash.put("parentId", child.getParentId());
 		flash.put("menuId", child.getId());
 
-		return "menuContentsDetail?faces-redirect=true";
+		return "menuContentsEdit?faces-redirect=true";
 
 //		Map<String, List<String>> param = new HashMap<String, List<String>>();
 //		List<String> list = new ArrayList<String>();

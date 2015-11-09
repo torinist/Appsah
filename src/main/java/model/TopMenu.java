@@ -7,9 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,10 +20,15 @@ import javax.persistence.Table;
 @Table(name = "top_menu")
 @NamedQueries({
 		@NamedQuery(name = TopMenu.FIND_ALL, query = "SELECT t FROM TopMenu t"),
-		@NamedQuery(name = TopMenu.FIND_ALL_BY_DELFLAG, query = "SELECT t FROM TopMenu t WHERE t.delflag='false'") })
+		@NamedQuery(name = TopMenu.FIND_ALL_BY_DELFLAG, query = "SELECT t FROM TopMenu t WHERE t.delflag='false'"),
+		@NamedQuery(name = TopMenu.FIND_PARENT, query = "SELECT t FROM TopMenu t WHERE t.delflag='false' AND t.parentId=null"),
+		@NamedQuery(name = TopMenu.FIND_BY_PARENTID, query = "SELECT t FROM TopMenu t WHERE t.parentId=:ParentID")})
 public class TopMenu implements Serializable {
 	public final static String FIND_ALL = "TopMenu.findAll";
 	public final static String FIND_ALL_BY_DELFLAG = "TopMenu.findAllByDelflag";
+	public final static String FIND_BY_PARENTID = "TopMenu.findByParentId";
+	public final static String FIND_PARENT = "TopMenu.findParent";
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -33,7 +38,7 @@ public class TopMenu implements Serializable {
 
 	private String lastupdate;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "LASTUPMEMBER")
 	private Member member;
 
@@ -46,7 +51,7 @@ public class TopMenu implements Serializable {
 	private String parentId;
 
 	// RESTRICTERが3であれば、1、2の権限を認める、といった仕組み
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "RESTRICTER")
 	private MasterMemcat memcat;
 
