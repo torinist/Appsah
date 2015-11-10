@@ -9,9 +9,6 @@ import model.Member;
 
 import org.slf4j.Logger;
 
-import util.Constant;
-import util.LoginVerifier;
-import bean.LoginUserBean;
 import dao.MemberDao;
 
 @Dependent
@@ -21,27 +18,20 @@ public class LoginService implements Serializable {
 	MemberDao dao;
 
 	@Inject
-	LoginUserBean loginUser;
-
-	@Inject
 	Logger logger;
-
-	@Inject
-	LoginVerifier loginVerifier;
 
 	/**
 	 *
-	 * @param empId ログインID
-	 * @return データの取得結果
+	 * @param empId ユーザID
+	 * @return ログインユーザのオブジェクト
+	 * @throws Exception empIdに該当するユーザが見つからなかった場合に発生する
 	 */
-	public int login(String empId) {
+	public Member login(String empId)  throws Exception {
 		Member member = dao.find(empId);
 		if(member!=null) {
-			loginUser.login(member.getId(), member.getName(), member.getMasterMemcat().getId(), member.getMasterMemcat().getName());
-			logger.info(member.getId());
-			return Constant.SUCCESS;
+			return member;
 		} else {
-			return Constant.FAILED;
+			throw new Exception("該当するユーザが見つかりませんでした。");
 		}
 	}
 

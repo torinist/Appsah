@@ -19,6 +19,10 @@ public class LoginUserBean implements Serializable {
 	// ユーザ権限名
 	private String memCatName;
 
+	public LoginUserBean() {
+		// デフォルトコンストラクタ
+	}
+
 	public void login(String userId, String userName, String memCatId, String memCatName) {
 		this.userId = userId;
 		this.userName = userName;
@@ -37,32 +41,16 @@ public class LoginUserBean implements Serializable {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
 	public String getUserName() {
 		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 
 	public String getMemCatId() {
 		return memCatId;
 	}
 
-	public void setMemCatId(String memCatId) {
-		this.memCatId = memCatId;
-	}
-
 	public String getMemCatName() {
 		return memCatName;
-	}
-
-	public void setMemCatName(String memCatName) {
-		this.memCatName = memCatName;
 	}
 
 }

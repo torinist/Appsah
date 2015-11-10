@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<h:head>
+		<title>NORN</title>
+		<h:outputStylesheet library="css" name="default.css" />
+	</h:head>
+
+	<h:body>
+	  <f:metadata>
+	    <f:viewAction action="#{menuContentsEditBackingBean.displayCheck()}" onPostback="true" />
+	  </f:metadata>
+	  <div class="header">
+	  	<table class="headerGrid">
+	  		<tr>
+	  			<td class="headerColumnLeft"><h:outputText value="グループ内ポータル"/></td>
+	  			<td class="headerColumn">
+	  				<p:button value="ポータルトップ" icon="fa fa-bookmark" outcome="index"/>
+	  				<p:button value="NORN" icon="fa fa-book" outcome="shareInfo"/>
+	  			</td>
+	  			<td class="headerColumnRight">
+	  				<!-- TODO: headerをテンプレート化したらログインボタンもここに表示する -->
+			  	</td>
+	  		</tr>
+	  	</table>
+	  </div>
+	  <div class="ui-grid ui-grid-responsive">
+	    <div class="ui-grid-row">
+	      <div class="ui-grid-col-3"/>
+	      <div class="ui-grid-col-6">
+	        <h:form>
+	          <p:messages id="messages" showDetail="true" autoUpdate="true" closable="false" />
+			  <h1>
+			  	<p:outputLabel value="#{menuContentsEditBackingBean.menu.parentName}"/>/
+			    <p:outputLabel value="#{menuContentsEditBackingBean.menu.name}" rendered="#{!menuContentsEditBackingBean.editable}"/>
+			    <p:inputText value="#{menuContentsEditBackingBean.menu.name}" rendered="#{menuContentsEditBackingBean.editable}"/>
+			  </h1>
+			  <p:selectBooleanButton offLabel="参照" onLabel="変更" onchange="submit()" value="#{menuContentsEditBackingBean.editable}" disabled="#{menuContentsEditBackingBean.additional}"/>
+			  <p:commandButton value="保存する" action="#{menuContentsEditBackingBean.edit()}" rendered="#{menuContentsEditBackingBean.editable}" icon="fa fa-plus-circle"/>
+			  <div class="contentsEdit">
+			    <p:outputLabel value="#{menuContentsEditBackingBean.menu.menucontents}" escape="false" rendered="#{!menuContentsEditBackingBean.editable}"/>
+			    <p:inputTextarea value="#{menuContentsEditBackingBean.menu.menucontents}" rendered="#{menuContentsEditBackingBean.editable}" style="width:100%;height:350px;" autoResize="false"/>
+			  </div>
+			  <div class="alignRight">
+			  	<p:commandButton value="削除する" action="#{menuContentsEditBackingBean.remove}" rendered="#{menuContentsEditBackingBean.editable}" disabled="#{menuContentsEditBackingBean.additional}" icon="fa fa-trash-o"/>
+			  </div>
+			  <div class="updateinfo">
+			    <p:outputLabel value="更新日：#{menuContentsEditBackingBean.menu.lastupdate}" />&nbsp;&nbsp;
+				<p:outputLabel value="更新者：#{menuContentsEditBackingBean.menu.lastupMemberName}"/>
+			  </div>
+			</h:form>
+		  </div>
+		  <div class="ui-grid-col-3"/>
+		</div>
+	  </div>
+	  <div class="footer">
+	    Copyright 2015 mo
+	  </div>
+	</h:body>
+</html>

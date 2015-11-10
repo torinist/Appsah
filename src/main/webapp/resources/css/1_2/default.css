@@ -15,9 +15,9 @@ div.header {
 
 div.footer {
 	background-color: #495460;
-	height: 40px;
 	font-weight: bold;
 	color: #e1e463;
+	text-align: center;
 }
 
 table.headerGrid {
@@ -42,6 +42,25 @@ div.main {
 	padding-top: 5px;
 }
 
+/* ラベルとコンテンツが一緒になっているテーブル。線あり */
+table.tableGrid {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+table.tableGrid .tableLabel {
+	width: 30%;
+	background-color: #35414f;
+	font-weight:bold;
+	color:#e1e463;
+}
+
+/* 右寄りにするdiv */
+div.alignRight {
+	text-align: right;
+}
+
+/* contentEditのCSS*/
 .contactEditDialogGrid {
 	cellpadding: 5px;
 }
@@ -51,6 +70,7 @@ div.main {
     border: none;
 }
 
+/* indexのCSS */
 table.twiGrid1 {
 	width: 100%;
 }
@@ -71,23 +91,19 @@ table.twiGrid1 .pgRight {
 	width: 25%;
 }
 
-/* ラベルとコンテンツが一緒になっているテーブル。線あり */
-table.tableGrid {
-	margin-left: auto;
-	margin-right: auto;
-}
-
-table.tableGrid .tableLabel {
-	width: 30%;
-	background-color: #35414f;
-	font-weight:bold;
-	color:#e1e463;
-}
-
-table.tabInnerLink {
-	margin: 10px;
-}
-
+/* loginのCSS */
 div.loginForm {
 	text-align: center;
+}
+
+/* menuContentsのCSS */
+
+/* 更新情報の表示場所（更新日、更新者） */
+div.updateinfo {
+	font-size: 70%;
+	text-align: right;
+}
+
+div.contentsEdit {
+	width: 100%;
 }

@@ -10,4 +10,6 @@ public class Constant {
 	public static final Boolean LOGIN = false;
 	public static final Boolean NONLOGIN = true;
 
+	public static final String CHARASET = "UTF-8";
+
 }

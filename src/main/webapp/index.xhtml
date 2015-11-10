@@ -13,29 +13,30 @@
 
 	<h:body>
 	  <div class="header">
-	  	<h:panelGrid columns="3" columnClasses="headerColumnLeft,headerColumn,headerColumnRight" styleClass="headerGrid">
-	  		<h:outputText value="グループ内ポータル"/>
-	  		<p:commandButton value="情報共有版" icon="fa fa-bookmark"/>
-	  		<ui:fragment rendered="#{indexBackingBean.loginVerify}">
-	  			<p:button value="ログイン" icon="fa fa-male" outcome="login"/>
-	  		</ui:fragment>
-	  		<h:form>
-	  		  <ui:fragment rendered="#{!indexBackingBean.loginVerify}">
-	  			<h:outputText value="#{indexBackingBean.loginUser.userName}さんがログイン中"/>
-	  			<p:commandButton value="ログアウト" action="#{indexBackingBean.logout}"/>
-	  		  </ui:fragment>
-	  		</h:form>
-	  	</h:panelGrid>
+	  	<table class="headerGrid">
+	  		<tr>
+	  			<td class="headerColumnLeft"><h:outputText value="グループ内ポータル"/></td>
+	  			<td class="headerColumn">
+	  				<p:button value="ポータルトップ" icon="fa fa-bookmark" outcome="index"/>
+	  				<p:button value="NORN" icon="fa fa-book" outcome="shareInfo"/>
+	  			</td>
+	  			<td class="headerColumnRight">
+	  				<ui:fragment rendered="#{indexBackingBean.loginVerify}">
+	  					<p:button value="ログイン" icon="fa fa-male" outcome="login"/>
+	  				</ui:fragment>
+	  				<h:form>
+			  		  <ui:fragment rendered="#{!indexBackingBean.loginVerify}">
+			  			<h:outputText value="#{indexBackingBean.loginUser.userName}さんがログイン中"/>
+			  			<p:commandButton value="ログアウト" action="#{indexBackingBean.logout}"/>
+			  		  </ui:fragment>
+			  		</h:form>
+			  	</td>
+	  		</tr>
+	  	</table>
 	  </div>
 	  <div class="main ui-grid ui-grid-responsive">
 	    <div class="ui-grid-row">
-	      <div class="ui-grid-col-3">
-	      <!-- メニューは静的コンテンツに移すためコメントアウト
-	        <h:form>
-	          <p:menu style="width:90%;" model="#{indexBackingBean.menuModel}" styleClass="horizontalmenu" />
-	        </h:form>
-	       -->
-	      </div>
+	      <div class="ui-grid-col-3" />
 	      <div class="ui-grid-col-6">
 	      	<h:form>
 	      	  <p:poll update="twitterLike" interval="20" listener="#{indexBackingBean.updateTwitter}"/>
@@ -48,8 +49,7 @@
 			  	  </h:panelGrid>
         		</f:facet>
 
-        		<h:panelGrid columns="2" columnClasses="logo,detail" styleClass="twiGrid1">
-        		  <h:graphicImage library="images" name="icon.jpg" />
+        		<h:panelGrid columns="2" styleClass="twiGrid1">
 	        	  <p:outputPanel>
 	        	  	<h:panelGrid columns="3" cellpadding="5" columnClasses="pgLeft,pgCenter,pgRight" styleClass="twiGrid2">
 	        	  		<h:outputText value="#{conb.categoryName}"/>
@@ -59,8 +59,8 @@
 	        	  		<h:outputText value="#{conb.writer}" style="color: #ff0000; font-size: 80%;"/>
 	        	  		<h:outputText value="#{conb.datetime}" style="font-size: 80%;"/>
 	        	  	</h:panelGrid>
-
 	        	  </p:outputPanel>
+				  <p:commandButton icon="fa fa-remove"/>
 	        	</h:panelGrid>
 	        	<p:separator />
         	  </p:dataScroller>
@@ -68,6 +68,9 @@
 	      </div>
 	      <div class="ui-grid-col-3"/>
 	    </div>
+	  </div>
+	  <div class="footer">
+	    Copyright 2015 mo
 	  </div>
 	</h:body>
 

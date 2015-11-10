@@ -1,18 +1,9 @@
 package backingbean;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import logic.TopMenuService;
-
-import org.junit.Test;
-
-import bean.TopMenuBean;
 
 public class IndexBackingBeanTest {
 
+	/*
 	@Test
 	public void test() {
 		IndexBackingBean index = new IndexBackingBean();
@@ -43,4 +34,5 @@ public class IndexBackingBeanTest {
 			return new ArrayList<TopMenuBean>();
 		}
 	}
+	*/
 }

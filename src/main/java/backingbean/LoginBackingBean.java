@@ -8,13 +8,14 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import logic.LoginService;
+import model.Member;
 
 import org.slf4j.Logger;
 
-import util.Constant;
 import util.LoginVerifier;
+import bean.LoginUserBean;
 
-@Named
+@Named(value="loginBackingBean")
 @RequestScoped
 public class LoginBackingBean {
 
@@ -25,6 +26,9 @@ public class LoginBackingBean {
 
 	@Inject
 	LoginVerifier loginVerifier;
+
+	@Inject
+	LoginUserBean loginUser;
 
 	// ログインしているか否かの判定変数
 	private Boolean loginVerify;
@@ -47,16 +51,15 @@ public class LoginBackingBean {
 	}
 
 	public String login() {
-		int result = loginService.login(empId);
-		if (result == Constant.SUCCESS) {
+		try {
+			Member member = loginService.login(empId);
+			loginUser.login(member.getId(), member.getName(), member.getMasterMemcat().getId(), member.getMasterMemcat().getName());
 			logger.info("ログイン成功：" + empId);
 			return "index?faces-redirect=true";
-		} else {
-			// empIdがデータベースに存在しない場合。また、returnをnullにする
+		} catch(Exception e) {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"社員番号 not found", "社員番号が登録されていないため、ログインできません。"));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, empId + "：not found", e.getMessage()));
 			return null;
 		}
 	}

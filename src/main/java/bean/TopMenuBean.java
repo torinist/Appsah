@@ -1,28 +1,33 @@
 package bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /*
  *  入れ子メニュークラス
  */
-public class TopMenuBean {
+public class TopMenuBean implements Serializable {
 
-	private String parent;			// 親メニュー
-	private List<String> children;	// 子メニュー
+	private MenuBean parent; // 親メニュー
+	private List<MenuBean> children; // 子メニュー
 
-	public String getParent() {
+	public TopMenuBean() {
+		// デフォルトコンストラクタ
+	}
+
+	public MenuBean getParent() {
 		return parent;
 	}
 
-	public void setParent(String parent) {
+	public void setParent(MenuBean parent) {
 		this.parent = parent;
 	}
 
-	public List<String> getChildren() {
+	public List<MenuBean> getChildren() {
 		return children;
 	}
 
-	public void setChildren(List<String> children) {
+	public void setChildren(List<MenuBean> children) {
 		this.children = children;
 	}
 
