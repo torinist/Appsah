@@ -15,7 +15,7 @@ import org.slf4j.Logger;
 import util.LoginVerifier;
 import bean.LoginUserBean;
 
-@Named
+@Named(value="loginBackingBean")
 @RequestScoped
 public class LoginBackingBean {
 

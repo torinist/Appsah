@@ -47,7 +47,7 @@
 			    <p:inputTextarea value="#{menuContentsEditBackingBean.menu.menucontents}" rendered="#{menuContentsEditBackingBean.editable}" style="width:100%;height:350px;" autoResize="false"/>
 			  </div>
 			  <div class="alignRight">
-			  	<p:commandButton value="削除する" rendered="#{menuContentsEditBackingBean.editable}" disabled="#{menuContentsEditBackingBean.additional}" icon="fa fa-trash-o"/>
+			  	<p:commandButton value="削除する" action="#{menuContentsEditBackingBean.remove}" rendered="#{menuContentsEditBackingBean.editable}" disabled="#{menuContentsEditBackingBean.additional}" icon="fa fa-trash-o"/>
 			  </div>
 			  <div class="updateinfo">
 			    <p:outputLabel value="更新日：#{menuContentsEditBackingBean.menu.lastupdate}" />&nbsp;&nbsp;

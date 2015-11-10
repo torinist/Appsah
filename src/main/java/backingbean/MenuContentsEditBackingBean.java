@@ -48,7 +48,6 @@ public class MenuContentsEditBackingBean implements Serializable {
 		String menuId = (String) flash.get("menuId");
 		String parentId = (String) flash.get("parentId");
 
-		// 初回であればinitの中でなくていいかなあ
 		// 初回はmenuIDの有無とparentIDの有無のみ、初回は更新はない
 
 		if (menuId != null) {
@@ -169,6 +168,23 @@ public class MenuContentsEditBackingBean implements Serializable {
 
 			return "menuContentsEdit?faces-redirect=true";
 
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR,
+							"エラー発生", e.getMessage()));
+			return null;
+		}
+	}
+
+	public String remove() {
+		menu.setLastupMemberId(loginUser.getUserId());
+		menu.setLastupMemberName(loginUser.getUserName());
+
+		try {
+			topMenuService.removeMenu(menu);
+
+			return "shareInfo?faces-redirect=true";
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage(
 					null,

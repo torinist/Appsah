@@ -209,4 +209,38 @@ public class TopMenuService implements Serializable {
 		return newId;
 	}
 
+	/**
+	 * 1件メニューを削除する（論理削除）
+	 * @param mb 削除したいメニュー
+	 * @throws Exception エラーが発生した場合
+	 */
+	public void removeMenu(MenuBean mb) throws Exception {
+		try {
+			// MenuBeanをTopMenuに変換する
+			TopMenu tm = new TopMenu();
+			tm.setId(mb.getId());
+			tm.setName(mb.getName());
+			tm.setParentId(mb.getParentId());
+			tm.setDelflag((byte) 0);
+			tm.setLastupdate(Dateutil.dateToString(Dateutil.getNowDate()));
+
+			Member m = new Member();
+			m.setId(mb.getLastupMemberId());
+			m.setName(mb.getLastupMemberName());
+			tm.setMember(m);
+			tm.setMenucontents(StringUtil.stringToByte(mb.getMenucontents(),
+					Constant.CHARASET));
+			MasterMemcat mm = new MasterMemcat();
+			mm.setId(mb.getRestricterId());
+			mm.setName(mb.getRestricterName());
+			tm.setMemcat(mm);
+			tm.setDelflag((byte)1);
+
+			// TopMenuをmergeする
+			topmenuDao.edit(tm);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 }
