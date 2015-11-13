@@ -38,11 +38,6 @@ public class ContactEditBean {
 
 	@Inject
 	private MasterContactCategoryService categoryService;
-	// // TODO: Mapにしたらどうだろうか。そうするとIDとnameが紐づいて楽なんだけどなあ
-	// private List<WriterBean> writerIds;
-	//
-	// @Inject
-	// private WriterService writerService;
 
 	@Inject
 	ContactService contactService;

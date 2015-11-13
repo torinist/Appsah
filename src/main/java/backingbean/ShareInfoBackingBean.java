@@ -57,10 +57,9 @@ public class ShareInfoBackingBean {
 //		}
 	}
 
-	// TODO dialog表示にしているが、参照等と同じページの方が良いのかは考えもの
+	// TODO：ホントはダイアログ表示にしたい
 	public String addMenu() {
 		Logger.info("addMenuに突入します");
-		// TODO：ホントはダイアログ表示にしたい
 //		Map map = FacesContext.getCurrentInstance().getExternalContext().getRequestMap();
 //		TopMenuBean tmb = (TopMenuBean)map.get("tm");
 //
