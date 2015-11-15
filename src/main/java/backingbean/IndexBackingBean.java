@@ -41,6 +41,8 @@ public class IndexBackingBean implements Serializable {
 //	// ログインしているか否かの判定変数
 //	private Boolean loginVerify;
 
+	// TODO: removeを作成する
+
 	@PostConstruct
 	public void init() {
 		conb = contactService.contactListCreate();
