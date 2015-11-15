@@ -9,14 +9,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import logic.ContactService;
-import logic.LoginService;
 
 import org.primefaces.context.RequestContext;
 import org.slf4j.Logger;
 
-import util.LoginVerifier;
 import bean.ContactBean;
-import bean.LoginUserBean;
 
 @Named
 @ViewScoped
@@ -27,35 +24,35 @@ public class IndexBackingBean implements Serializable {
 	@Inject
 	private ContactService contactService;
 
-	@Inject
-	LoginVerifier loginVerifier;
+//	@Inject
+//	LoginVerifier loginVerifier;
 
-	@Inject
-	LoginUserBean loginUser;
+//	@Inject
+//	LoginUserBean loginUser;
 
 	@Inject
 	Logger logger;
 
-	@Inject
-	LoginService loginService;
+//	@Inject
+//	LoginService loginService;
 
-	// ログインしているか否かの判定変数
-	private Boolean loginVerify;
+//	// ログインしているか否かの判定変数
+//	private Boolean loginVerify;
 
 	@PostConstruct
 	public void init() {
 		conb = contactService.contactListCreate();
 
 		// ログイン判定
-		loginVerify = loginVerifier.loginVerify();
+//		loginVerify = loginVerifier.loginVerify();
 
 	}
 
-	public String logout() {
-		logger.info("ログアウトします。");
-		loginUser.logout();
-		return "index?faces-redirect=true";
-	}
+//	public String logout() {
+//		logger.info("ログアウトします。");
+//		loginUser.logout();
+//		return "index?faces-redirect=true";
+//	}
 
 	public void updateTwitter() {
 		conb = contactService.contactListCreate();
@@ -65,21 +62,21 @@ public class IndexBackingBean implements Serializable {
 		return conb;
 	}
 
-	public LoginUserBean getLoginUser() {
-		return loginUser;
-	}
-
-	public void setLoginUser(LoginUserBean loginUser) {
-		this.loginUser = loginUser;
-	}
-
-	public Boolean getLoginVerify() {
-		return loginVerify;
-	}
-
-	public void setLoginVerify(Boolean loginVerify) {
-		this.loginVerify = loginVerify;
-	}
+//	public LoginUserBean getLoginUser() {
+//		return loginUser;
+//	}
+//
+//	public void setLoginUser(LoginUserBean loginUser) {
+//		this.loginUser = loginUser;
+//	}
+//
+//	public Boolean getLoginVerify() {
+//		return loginVerify;
+//	}
+//
+//	public void setLoginVerify(Boolean loginVerify) {
+//		this.loginVerify = loginVerify;
+//	}
 
 	// contactを追加するメソッド
 	public void viewContactEdit() {

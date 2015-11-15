@@ -8,70 +8,48 @@
 
 	<h:head>
 		<title>index</title>
-		<h:outputStylesheet library="css" name="default.css" />
 	</h:head>
 
 	<h:body>
-	  <div class="header">
-	  	<table class="headerGrid">
-	  		<tr>
-	  			<td class="headerColumnLeft"><h:outputText value="グループ内ポータル"/></td>
-	  			<td class="headerColumn">
-	  				<p:button value="ポータルトップ" icon="fa fa-bookmark" outcome="index"/>
-	  				<p:button value="NORN" icon="fa fa-book" outcome="shareInfo"/>
-	  			</td>
-	  			<td class="headerColumnRight">
-	  				<ui:fragment rendered="#{indexBackingBean.loginVerify}">
-	  					<p:button value="ログイン" icon="fa fa-male" outcome="login"/>
-	  				</ui:fragment>
-	  				<h:form>
-			  		  <ui:fragment rendered="#{!indexBackingBean.loginVerify}">
-			  			<h:outputText value="#{indexBackingBean.loginUser.userName}さんがログイン中"/>
-			  			<p:commandButton value="ログアウト" action="#{indexBackingBean.logout}"/>
-			  		  </ui:fragment>
-			  		</h:form>
-			  	</td>
-	  		</tr>
-	  	</table>
-	  </div>
-	  <div class="main ui-grid ui-grid-responsive">
-	    <div class="ui-grid-row">
-	      <div class="ui-grid-col-3" />
-	      <div class="ui-grid-col-6">
-	      	<h:form>
-	      	  <p:poll update="twitterLike" interval="20" listener="#{indexBackingBean.updateTwitter}"/>
-        	  <p:dataScroller value="#{indexBackingBean.conb}" var="conb" chunkSize="10" id="twitterLike">
-        		<f:facet name="header">
-        		  <h:panelGrid columns="3" columnClasses="headerColumnLeft,headerColumn,headerColumnRight" styleClass="headerGrid">
-			  		<h:outputText/>
-			  		連絡掲示板
-			  		<p:commandButton value="追加" icon="fa fa-plus-circle" actionListener="#{indexBackingBean.viewContactEdit}"/>
-			  	  </h:panelGrid>
-        		</f:facet>
+	  <ui:composition template="/template/template.xhtml">
+	    <ui:define name ="content">
+		  <div class="main ui-grid ui-grid-responsive">
+		    <div class="ui-grid-row">
+		      <div class="ui-grid-col-3" />
+		      <div class="ui-grid-col-6">
+		      	<h:form>
+		      	  <p:poll update="twitterLike" interval="20" listener="#{indexBackingBean.updateTwitter}"/>
+	        	  <p:dataScroller value="#{indexBackingBean.conb}" var="conb" chunkSize="10" id="twitterLike">
+	        		<f:facet name="header">
+	        		  <h:panelGrid columns="3" columnClasses="headerColumnLeft,headerColumn,headerColumnRight" styleClass="headerGrid">
+				  		<h:outputText/>
+				  		連絡掲示板
+				  		<p:commandButton value="追加" icon="fa fa-plus-circle" actionListener="#{indexBackingBean.viewContactEdit}"/>
+				  	  </h:panelGrid>
+	        		</f:facet>
 
-        		<h:panelGrid columns="2" styleClass="twiGrid1">
-	        	  <p:outputPanel>
-	        	  	<h:panelGrid columns="3" cellpadding="5" columnClasses="pgLeft,pgCenter,pgRight" styleClass="twiGrid2">
-	        	  		<h:outputText value="#{conb.categoryName}"/>
-		        	  	<h:outputText value="#{conb.content}"/>
-		        	  	<h:outputText/>
-		        	  	<h:outputText/>
-	        	  		<h:outputText value="#{conb.writer}" style="color: #ff0000; font-size: 80%;"/>
-	        	  		<h:outputText value="#{conb.datetime}" style="font-size: 80%;"/>
-	        	  	</h:panelGrid>
-	        	  </p:outputPanel>
-				  <p:commandButton icon="fa fa-remove"/>
-	        	</h:panelGrid>
-	        	<p:separator />
-        	  </p:dataScroller>
-            </h:form>
-	      </div>
-	      <div class="ui-grid-col-3"/>
-	    </div>
-	  </div>
-	  <div class="footer">
-	    Copyright 2015 mo
-	  </div>
+	        		<h:panelGrid columns="2" styleClass="twiGrid1">
+		        	  <p:outputPanel>
+		        	  	<h:panelGrid columns="3" cellpadding="5" columnClasses="pgLeft,pgCenter,pgRight" styleClass="twiGrid2">
+		        	  		<h:outputText value="#{conb.categoryName}"/>
+			        	  	<h:outputText value="#{conb.content}"/>
+			        	  	<h:outputText/>
+			        	  	<h:outputText/>
+		        	  		<h:outputText value="#{conb.writer}" style="color: #ff0000; font-size: 80%;"/>
+		        	  		<h:outputText value="#{conb.datetime}" style="font-size: 80%;"/>
+		        	  	</h:panelGrid>
+		        	  </p:outputPanel>
+					  <p:commandButton icon="fa fa-remove"/>
+		        	</h:panelGrid>
+		        	<p:separator />
+	        	  </p:dataScroller>
+	            </h:form>
+		      </div>
+		      <div class="ui-grid-col-3"/>
+		    </div>
+		  </div>
+		</ui:define>
+	  </ui:composition>
 	</h:body>
 
 </html>
