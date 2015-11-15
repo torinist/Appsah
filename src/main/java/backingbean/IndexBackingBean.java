@@ -1,7 +1,9 @@
 package backingbean;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -80,7 +82,10 @@ public class IndexBackingBean implements Serializable {
 
 	// contactを追加するメソッド
 	public void viewContactEdit() {
-		RequestContext.getCurrentInstance().openDialog("contactEdit");
+		// 後ろを操作不可にする
+		Map<String,Object> options = new HashMap<String, Object>();
+		options.put("modal", true);
+		RequestContext.getCurrentInstance().openDialog("contactEdit", options, null);
 	}
 
 }
