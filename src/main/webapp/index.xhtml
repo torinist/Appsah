@@ -6,10 +6,6 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-	<h:head>
-		<title>index</title>
-	</h:head>
-
 	<h:body>
 	  <ui:composition template="/template/template.xhtml">
 	    <ui:define name ="content">
@@ -23,7 +19,7 @@
 	        		<f:facet name="header">
 	        		  <h:panelGrid columns="3" columnClasses="headerColumnLeft,headerColumn,headerColumnRight" styleClass="headerGrid">
 				  		<h:outputText/>
-				  		連絡掲示板
+				  		<h:outputLabel value="Urd"/>
 				  		<p:commandButton value="追加" icon="fa fa-plus-circle" actionListener="#{indexBackingBean.viewContactEdit}"/>
 				  	  </h:panelGrid>
 	        		</f:facet>

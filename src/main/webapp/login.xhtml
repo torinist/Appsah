@@ -5,45 +5,38 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-<h:head>
-	<title>ログイン</title>
-	<h:outputStylesheet library="css" name="default.css" />
-</h:head>
+
 <h:body>
 	<f:metadata>
 	  <f:viewAction action="#{loginBackingBean.loginCheck}" onPostback="true" />
 	</f:metadata>
-	<div class="header">
-		<h:panelGrid columns="3"
-			columnClasses="headerColumnLeft,headerColumn,headerColumnRight"
-			styleClass="headerGrid">
-			<h:outputText value="グループ内ポータル" />
-			<h:outputText />
-			<p:button value="トップ" icon="fa fa-home" outcome="index" />
-		</h:panelGrid>
-	</div>
-	<div class="main ui-grid ui-grid-responsive">
-		<div class="ui-grid-row">
-			<div class="ui-grid-col-3"></div>
-			<div class="ui-grid-col-6">
-				<!-- ログインしていない場合はフォームが出る -->
-				<ui:fragment rendered="#{loginBackingBean.loginVerify}">
-					<div class="loginForm">
-						<h:form>
-							<p:messages id="messages" autoUpdate="true" closable="true" />
-							<h:panelGrid columns="2" columnClasses="tableLabel,tableContents"
-								styleClass="tableGrid">
-								<h:outputText value="社員番号" />
-								<p:inputText value="#{loginBackingBean.empId}" required="true" />
-							</h:panelGrid>
-							<p:commandButton value="ログイン" icon="fa fa-male"
-								action="#{loginBackingBean.login}" />
-						</h:form>
+	<ui:composition template="/template/template.xhtml">
+	    <ui:define name ="content">
+
+			<div class="main ui-grid ui-grid-responsive">
+				<div class="ui-grid-row">
+					<div class="ui-grid-col-3"></div>
+					<div class="ui-grid-col-6">
+						<!-- ログインしていない場合はフォームが出る -->
+						<ui:fragment rendered="#{loginBackingBean.loginVerify}">
+							<div class="loginForm">
+								<h:form>
+									<p:messages id="messages" autoUpdate="true" closable="true" />
+									<h:panelGrid columns="2" columnClasses="tableLabel,tableContents"
+										styleClass="tableGrid">
+										<h:outputText value="社員番号" />
+										<p:inputText value="#{loginBackingBean.empId}" required="true" />
+									</h:panelGrid>
+									<p:commandButton value="ログイン" icon="fa fa-male"
+										action="#{loginBackingBean.login}" />
+								</h:form>
+							</div>
+						</ui:fragment>
 					</div>
-				</ui:fragment>
+					<div class="ui-grid-col-3" />
+				</div>
 			</div>
-			<div class="ui-grid-col-3" />
-		</div>
-	</div>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

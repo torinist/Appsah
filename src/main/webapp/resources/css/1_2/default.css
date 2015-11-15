@@ -18,6 +18,8 @@ div.footer {
 	font-weight: bold;
 	color: #e1e463;
 	text-align: center;
+	margin: 20px -8px 0 -8px;
+	padding: 10px 0;
 }
 
 table.headerGrid {

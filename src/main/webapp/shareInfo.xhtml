@@ -6,17 +6,13 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-	<h:head>
-		<title>NORN</title>
-	</h:head>
-
 	<h:body>
 	  <ui:composition template="/template/template.xhtml">
 	    <ui:define name="content">
 		  <div class="main ui-grid ui-grid-responsive">
 		    <div class="ui-grid-row">
 			  <div class="ui-grid-col-6">
-			  	<h:outputLabel value="情報共有掲示板"/>
+			  	<h:outputLabel value="VERDANDI"/>
 		        <h:form>
 		          <p:tabView var="tm" value="#{shareInfoBackingBean.tmList}" tabindex="">
 		           	<p:tab title="#{tm.parent.name}">
