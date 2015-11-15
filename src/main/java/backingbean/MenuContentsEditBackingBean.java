@@ -42,7 +42,6 @@ public class MenuContentsEditBackingBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		System.out.println("EditのBackingBeanに入ってきてはいるみたいです");
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext()
 				.getFlash();
 		String menuId = (String) flash.get("menuId");
@@ -89,7 +88,6 @@ public class MenuContentsEditBackingBean implements Serializable {
 				// 新規作成時
 				if (loginVerify) {
 					// ログインさせるようにメッセージを出力する
-					System.out.println("非ログイン：新規作成時の処理に突入しします");
 					FacesContext.getCurrentInstance().addMessage(
 							null,
 							new FacesMessage(FacesMessage.SEVERITY_WARN,
@@ -99,13 +97,11 @@ public class MenuContentsEditBackingBean implements Serializable {
 				} else {
 					// ログインしているのでボタン等を出力
 					// 権限制限が必要な場合はここにifを追加する？
-					System.out.println("ログイン：新規作成時の処理に突入しします");
 
 				}
 			} else {
 				// 変更時
 				if (loginVerify) {
-					System.out.println("非ログイン：変更時の処理に突入します");
 					// ログインさせるようにメッセージを出力する
 					FacesContext.getCurrentInstance().addMessage(
 							null,
@@ -114,7 +110,6 @@ public class MenuContentsEditBackingBean implements Serializable {
 					editable = false;
 					additional = false;
 				} else {
-					System.out.println("ログイン：変更時の処理に突入します");
 					// ログインしているのでボタン等を出力
 				}
 			}
@@ -128,7 +123,6 @@ public class MenuContentsEditBackingBean implements Serializable {
 							null,
 							new FacesMessage(FacesMessage.SEVERITY_WARN,
 									"ノーログイン", "ログインしていないため参照のみできます"));
-					System.out.println("参照時の処理に突入します");
 				}
 			}
 		}
