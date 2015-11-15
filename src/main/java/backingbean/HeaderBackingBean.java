@@ -1,7 +1,9 @@
 package backingbean;
 
+import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -13,8 +15,8 @@ import util.LoginVerifier;
 import bean.LoginUserBean;
 
 @Named(value = "headerBackingBean")
-@RequestScoped
-public class HeaderBackingBean {
+@ViewScoped
+public class HeaderBackingBean implements Serializable {
 
 	@Inject
 	LoginVerifier loginVerifier;
