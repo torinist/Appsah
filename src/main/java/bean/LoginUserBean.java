@@ -3,6 +3,11 @@ package bean;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
 
 @SessionScoped
 public class LoginUserBean implements Serializable {
@@ -19,6 +24,8 @@ public class LoginUserBean implements Serializable {
 	// ユーザ権限名
 	private String memCatName;
 
+	private Logger logger;
+
 	public LoginUserBean() {
 		// デフォルトコンストラクタ
 	}
@@ -31,10 +38,16 @@ public class LoginUserBean implements Serializable {
 	}
 
 	public void logout() {
-		this.userId = null;
-		this.userName = null;
-		this.memCatId = null;
-		this.memCatName = null;
+		ExternalContext exCon = FacesContext.getCurrentInstance().getExternalContext();
+		HttpSession session = (HttpSession)exCon.getSession(false);
+		if(session!=null) {
+			try {
+				session.invalidate();
+			} catch(Exception e) {
+				// TODO: セッション破棄失敗ログなどを記述する
+				logger.error("正常にセッションが破棄されませんでした。");
+			}
+		}
 	}
 
 	public String getUserId() {
