@@ -38,13 +38,13 @@
 			  <h1>
 			  	<p:outputLabel value="#{menuContentsEditBackingBean.menu.parentName}"/>/
 			    <p:outputLabel value="#{menuContentsEditBackingBean.menu.name}" rendered="#{!menuContentsEditBackingBean.editable}"/>
-			    <p:inputText value="#{menuContentsEditBackingBean.menu.name}" rendered="#{menuContentsEditBackingBean.editable}"/>
+			    <p:inputText value="#{menuContentsEditBackingBean.menu.name}" rendered="#{menuContentsEditBackingBean.editable}" required="true"/>
 			  </h1>
 			  <p:selectBooleanButton offLabel="参照" onLabel="変更" onchange="submit()" value="#{menuContentsEditBackingBean.editable}" disabled="#{menuContentsEditBackingBean.additional}"/>
 			  <p:commandButton value="保存する" action="#{menuContentsEditBackingBean.edit()}" rendered="#{menuContentsEditBackingBean.editable}" icon="fa fa-plus-circle"/>
 			  <div class="contentsEdit">
 			    <p:outputLabel value="#{menuContentsEditBackingBean.menu.menucontents}" escape="false" rendered="#{!menuContentsEditBackingBean.editable}"/>
-			    <p:inputTextarea value="#{menuContentsEditBackingBean.menu.menucontents}" rendered="#{menuContentsEditBackingBean.editable}" style="width:100%;height:350px;" autoResize="false"/>
+			    <p:inputTextarea value="#{menuContentsEditBackingBean.menu.menucontents}" rendered="#{menuContentsEditBackingBean.editable}" style="width:100%;height:350px;" autoResize="false" required="true"/>
 			  </div>
 			  <div class="alignRight">
 			  	<p:commandButton value="削除する" action="#{menuContentsEditBackingBean.remove}" rendered="#{menuContentsEditBackingBean.editable}" disabled="#{menuContentsEditBackingBean.additional}" icon="fa fa-trash-o"/>
