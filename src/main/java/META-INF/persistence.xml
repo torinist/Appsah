@@ -7,6 +7,8 @@
 		<class>model.Member</class>
 		<class>model.Contact</class>
 		<class>model.TopMenu</class>
+		<class>model.Freesoft</class>
+		<class>model.MasterFreesoftCategory</class>
 
 	    <!-- アプリケーション稼働時にはJTA Datasourceを使うため使われない。 -->
 	    <!-- IDEが使う可能性はある。 -->
