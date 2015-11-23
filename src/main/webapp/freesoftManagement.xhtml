@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<h:body>
+	  <ui:composition template="/template/template.xhtml">
+	    <ui:define name="content">
+	    	<p:messages id="messages" autoUpdate="true" closable="true" />
+	    	<h:form>
+	    		<p:panel header="検索">
+	    			<h:panelGrid columns="2" styleClass="tableGrid">
+	    				<h:outputLabel value="キーワード"/>
+	    				<p:inputText value="#{FSManageBB.keyword}"/>
+	    				<h:outputLabel value="カテゴリ"/>
+	    				<p:selectOneMenu>
+	    					<f:selectItem itemLabel="Select One" itemValue="" />
+							<f:selectItems value="#{FSManageBB.categories}" var="category" itemLabel="#{category.name}" itemValue="#{category}"/>
+	    				</p:selectOneMenu>
+	    			</h:panelGrid>
+	    			<p:commandButton value="検索" icon="fa fa-search" action="#{FSManageBB.search()}"/>
+				</p:panel>
+	    	</h:form>
+					<h:panelGrid columns="2" columnClasses="tableLabel,tableContents"
+						styleClass="tableGrid">
+						<h:outputText value="社員番号" />
+						<p:inputText value="#{loginBackingBean.empId}" required="true" />
+					</h:panelGrid>
+					<p:commandButton value="ログイン" icon="fa fa-male"
+						action="#{loginBackingBean.login}" />
+
+				<p:inputText ></p:inputText>
+		</ui:define>
+	  </ui:composition>
+	</h:body>
+
+</html>
